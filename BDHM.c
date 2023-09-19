@@ -117,8 +117,8 @@ int main(int argc, char *argv[]) {
 	
 	// See GSL documentation for more infos regarding the generator.
 	// GLS has to be linked for random numbers!
-    generator = gsl_rng_alloc(gsl_rng_ranlxs0);
-    printf("Random number generator algorithm: gsl_rng_ranlxs0\n");
+	generator = gsl_rng_alloc(gsl_rng_ranlxs0);
+	printf("Random number generator algorithm: gsl_rng_ranlxs0\n");
 	gsl_rng_set(generator, seed);
 	
 	// Initializes the simulations
