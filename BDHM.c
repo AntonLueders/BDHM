@@ -57,7 +57,7 @@ int calc_particles_per_pole = CALC_PARTICLES_PER_POLE;      // Calculations of t
 int pole_array_step = POLE_ARRAY_STEP;                      // After "pole_array_step" steps, a list of micomagnet occupation is printed
 Node *partInSim = NULL;                                     // All particles currently in the simulation box
 Node *waitingParticles = NULL;                              // All particles currently not in the simulation box
-
+gsl_rng *generator = NULL;                                  // Random number generator
 // ----------------------------------------------------------------------------------------
 // Start of program
 // ----------------------------------------------------------------------------------------	
