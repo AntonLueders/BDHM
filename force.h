@@ -13,6 +13,5 @@ double CalcWall(Particle *p_i, Particle *Wall);
 double CalcPole(Particle *p_i, Particle *pole_j);
 void CalcForce(Particle *P, Particle *Poles, Particle *Wall);
 void CalcForceWithVerlet(Particle *P, Particle *Poles, Particle *Wall);
-//void AddDrive(Particle *P);
 
 #endif

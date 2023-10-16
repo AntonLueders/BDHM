@@ -62,15 +62,15 @@ typedef enum { false, true } bool;
 // Structure which manages the particle information
 struct particle {
     double r[DIM]; // Position 
-	double r_old[DIM];
+    double r_old[DIM];
     double f_mag[DIM];
-	double f_ste[DIM];
-	double f[DIM];
-	double m[DIM];
+    double f_ste[DIM];
+    double f[DIM];
+    double m[DIM];
     double D;
     double sigma;
-	Node *verList_ste; // Verlet-list
-	Node *verList_mag; // Verlet-list
+    Node *verList_ste; // Verlet-list
+    Node *verList_mag; // Verlet-list
 };
 typedef struct particle Particle;
 
