@@ -4,7 +4,7 @@
 
 // Generates the list of particles that a currently in the simulation and particles
 // that are currently waiting to spawn in the simulation. This split is relevant for
-// the simulations with the Poiseulle flow, where particles enter and leave the simulation.
+// the simulations with the Poiseuille flow, where particles enter and leave the simulation.
 void InitPartLists() {
         
     partInSim = malloc(sizeof(Node));

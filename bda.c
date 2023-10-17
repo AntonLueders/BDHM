@@ -18,7 +18,7 @@ void Move(Particle *P, double D_Tensor[N][N][3][3]) {
             
             double v_flow[3] = {0., 0., 0.};
             if (!stationary_mode) {
-                PoiseulleFlow(&(P[i]), v_flow);     // See flow.c
+                PoiseuilleFlow(&(P[i]), v_flow);     // See flow.c
             }
 
             for(int d = 0; d < dim; d++) {
@@ -45,7 +45,7 @@ void Move(Particle *P, double D_Tensor[N][N][3][3]) {
             
             double v_flow[3] = {0., 0., 0.};
             if (!stationary_mode) {
-                PoiseulleFlow(&(P[i]), v_flow);     // See flow.c
+                PoiseuilleFlow(&(P[i]), v_flow);     // See flow.c
             }
             
             double Delta_r[3] = {0., 0., 0.};
@@ -88,7 +88,7 @@ void Move(Particle *P, double D_Tensor[N][N][3][3]) {
             
             double v_flow[3] = {0., 0., 0.};
             if(!stationary_mode) {
-                PoiseulleFlow(&(P[i]), v_flow);     // See flow.c
+                PoiseuilleFlow(&(P[i]), v_flow);     // See flow.c
             }
             
             double Delta_r[3] = {0., 0., 0.};

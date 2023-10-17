@@ -2,9 +2,9 @@
 
 // ----------------------------------------------------------------------------------------
 
-// Parabolic Poiseulle flow between two walls. 
+// Parabolic Poiseuille flow between two walls. 
 // Not relevant in the stationary_mode. 
-void PoiseulleFlow(Particle *p_i, double v_flow[3]) {
+void PoiseuilleFlow(Particle *p_i, double v_flow[3]) {
     
     for(int d = 1; d < 3; d++) {
         v_flow[d] = 0.;

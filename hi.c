@@ -57,9 +57,9 @@ void CalcDeltaOseen(Particle *p_i, Particle *p_j, double delta_Oij[3][3]) {
         rj[d] = p_j->r[d];
     }
     
-    // In the stationary_mode (i.e., without Poiseulle flow), periodic boundary conditions are applied. 
-    // if: with Poiseulle flow
-    // else: without Poiseulle flow (periodic boundaries)
+    // In the stationary_mode (i.e., without Poiseuille flow), periodic boundary conditions are applied. 
+    // if: with Poiseuille flow
+    // else: without Poiseuille flow (periodic boundaries)
     if (!stationary_mode) {
         
         delta_Oij[0][0] = -2. * ri[2] * rj[2] * (1. / pow(s, 3.) - 3. * pow(ri[0] - rj[0], 2.) / pow(s, 5.));

@@ -3,6 +3,6 @@
 
 #include "BDHM.h"
 
-void PoiseulleFlow(Particle *p_i, double v_flow[3]);
+void PoiseuilleFlow(Particle *p_i, double v_flow[3]);
 
 #endif

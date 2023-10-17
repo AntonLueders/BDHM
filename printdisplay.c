@@ -43,13 +43,13 @@ void PrintWelcome() {
     printf("+                                                                  "
            "    "
            "      +\n");
-    printf("+             Last edited: 19.09.2023                              "
+    printf("+             Last edited: 17.10.2023                              "
            "    "
            "      +\n");
     printf("+                                                                  "
            "    "
            "      +\n");
-    printf("+             V3.10.2                                              "
+    printf("+             V3.10.3                                              "
            "          +\n");
     printf("+                                                                  "
            "    "
@@ -90,7 +90,7 @@ void PrintInput() {
         printf("   Calculations with full HIs.\n");
     }
     if (!stationary_mode) {
-        printf("Maximum velocity of Poiseulle flow:\t%f\n", v_flow_max);
+        printf("Maximum velocity of Poiseuille flow:\t%f\n", v_flow_max);
     } else {
         printf("Stationary Mode:\n");
         printf("   Flow is surpressed.\n");
