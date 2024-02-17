@@ -4,7 +4,7 @@ BDHM (Brownian particle Dynamics with Hydrodynamics and Magnetic forces) combine
 
 [1] Scalable high-throughput microfluidic separation of magnetic microparticles by Hongti Gu et al.
 
-Reproducing the qualitative behavior of the experiments in Ref.1 with the heavily simplified toy model implemented in BDHM, we can show the generality of the underlying dynamic phenomena. All information and methods employed by BDHM are described in detail in the supporting information of Ref.1. While BDHM can be used to repeat the simulations described in Ref.1, we strongly encourage full reproduction using the information in said supporting information.
+Reproducing the qualitative behavior of the experiments in Ref.1 with the heavily simplified toy model implemented in BDHM, we can show the generality of the underlying dynamic phenomena. All information and methods employed by BDHM are described in detail in the supporting information of Ref.1. While BDHM can be used to repeat the corresponding simulations, we strongly encourage full reproduction using the information in said supporting information.
 
 # Table of content:
  - [What BDHM is and what it is not](#item-one)
