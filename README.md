@@ -1,6 +1,6 @@
 # Introduction
 
- **Table of content:**
+# Table of content:
  - [What BDHM is and what it is not](#item-one)
  - [Disclaimer](#item-two)
 
