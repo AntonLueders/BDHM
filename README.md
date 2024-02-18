@@ -9,6 +9,7 @@ By reproducing the qualitative behavior of the experiments in [1] with the heavi
 # Table of content:
  - [What BDHM is and what it is not](#What)
  - [Requirements](#Requirements)
+ - [How to build BDHM](#Build)
  - [Assumptions and simplifications](#Assumptions)
  - [Contents of the particular files](#Contents)
  - [Disclaimer](#Disclaimer)
@@ -24,6 +25,14 @@ BDHM is a heavily simplified toy model that trades physical rigorosity for strai
 The program can be built for gcc 13.2 (through GitHub). It was heavily tested for gcc 6.3.0 and gcc 7.5.0. The data presented in [1] was mostly obtained through a binary obtained through icc.
 
 To compile BDHM, the library GSL must be linked. However, in the studies presented in [1], GSL is only used for random numbers to generate the random initial conditions. Replacing these initial conditions with fixed ones, the program can easily be adjusted so that GSL is not needed (when repeating the numerical calculations of [1]).
+
+ <a id="Build"></a>
+# How to build BDHM
+
+An example makefile is given in the repository. As usually, it can be used to compile the progam by typing **make** in the console while being in the folder that contains the source files. If BDHM must be build "by hand", the particular C files that contain the different functions (i.e., all files except BDHM.c) can be compiled with
+``
+gcc 
+``
 
  <a id="Assumptions"></a>
 # Assumptions and simplifications
