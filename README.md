@@ -78,7 +78,7 @@ CalcVelocity	0	4
 CalcParticlesPerPole	0	5000
 ```
 
-The particular lines of such an input file and meaning of the numbers are summarized in the following list:
+The particular lines of such an input file and the meaning of the numbers are summarized in the following list:
 
 - **Geometry:** This line defines the layout of the system. The first number is the lattice constant of the micromagnet grid (in units of the colloid diameter). The second and third numbers are the number of micromagnets in the x and y direction, respectively. The final number is the height of the simulation box (in units of the colloid diameter).
 - **InitBox:** Here, the box is defined, where the particles are randomly placed at the start of the simulations. The three numbers are the measurements of the corresponding cuboid volume (in units of the colloid diameter).
