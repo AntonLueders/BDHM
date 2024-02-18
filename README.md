@@ -78,7 +78,13 @@ CalcVelocity	0	4
 CalcParticlesPerPole	0	5000
 ```
 
+The particular lines of such an input file and meaning of the numbers are summarized in the following list:
 
+- **Geometry:** This line defines the layout of the system. The first number is the lattice constant of the micromagnet grid (in units of the colloid diameter). The second and third numbers are the number of micromagnets in the x and y direction, respectively. The final number is the height of the simulation box (in units of the colloid diameter).
+- **InitBox:** Here, the box is defined, where the particles are randomly placed at the start of the simulations. The three numbers are the measurements of the corresponding cuboid volume (in units of the colloid diameter).
+- **N:** The corresponding value is the total number of colloids that can be in the simulation at the same time. For StationaryMode 1, N is the number of particles in the system. For StationaryMode 0, N is the maximum number of colloids that is possible.
+- **dt:** Length of the simulation step (in units of the Brownian time given by the squared diameter divided by diffusion coefficient).
+- **StepNumber:** This line of the input file defines the number of the performed simulation steps. The first value is the total number of simulation steps. The second number defines the distance of consecutive simulation steps that are saved in a generated output file (i.e., in the example, every 10th simulation step is saved).
 
  <a id="Assumptions"></a>
 # Assumptions and simplifications
