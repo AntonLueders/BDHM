@@ -85,6 +85,15 @@ The particular lines of such an input file and the meaning of the numbers are su
 - **N:** The corresponding value is the total number of colloids that can be in the simulation at the same time. For StationaryMode 1, N is the number of particles in the system. For StationaryMode 0, N is the maximum number of colloids that is possible.
 - **dt:** Length of the simulation step (in units of the Brownian time given by the squared diameter divided by diffusion coefficient).
 - **StepNumber:** This line of the input file defines the number of the performed simulation steps. The first value is the total number of simulation steps. The second number defines the distance of consecutive simulation steps that are saved in a generated output file (i.e., in the example, every 10th simulation step is saved).
+- **Magnetics:** All parameters of the external magnetic field are given in this line. The first value is the magnitude of the magnetic field (in units of mT) and the following three values are the coordinates of the initial direction of the field. The last value is the frequency with which the field is rotating (in units 1 per Brownian time).
+- **HiMode:** Using the numbers 0, 1, and 2, the algorithm for the integration of the particle dynamics can be adjusted. With the option 0, all hydrodynamic interactions between the colloids are neglected. Option 1 means that the magnetic forces result in hydrodynamic interactions but flow fields generated due to steric interactions are neglected. This is the default case used for all studies described in [1]. The last option 2 includes hydrodynamic interactions for all particle forces.
+- **VerletList:** To reduce the computational cost, Verlet lists are implemented. The number in this line is the corresponding Verlet radius (in units of the colloid diameter).
+- **Seed:** Random seed for the generation of the pseudo-random numbers.
+- **Flow:** Here, the additional flow field can be tuned (when StationaryMode 0 is chosen). The corresponding value is the maximum velocity of the parabolic Poiseuille flow (in units of colloid diameter divided by the Brownian time).
+- **ParticleManagement:** If StationaryMode 0 is chosen, then the particles are deleted and added to mimic the in and out flux of colloidal particles in the experiments. This line controls the number of particles in the system. The first number is the initial number of particles with which the simulation starts (while N is the maximum number that can be present). The second number is the rate which dictates when new particles are added. In detail, it is the number of steps between two consecutive additions of new particles.
+- **StationaryMode:** BDHM possesses two main modes. In the first mode, no additional flow field is added, which means the dispersion medium is "stationary" (i.e., StationaryMode 0). The second option (StationaryMode 1) adds a Poiseuille flow to the system.
+- **CalcVelocity:** This option can be used to calculate the velocity of the "first" particles of a traveling "particle band". The first number enables the option (i.e., CalcVelocity 1). The second number chooses the position of the "finish line" (in units of micromagnets). After the first particles pass the "finish line", the simulation ends.
+- **CalcParticlesPerPole:** If this option is chosen (i.e., CalcParticlesPerPole	1), the average number of particles per occupied micromagnet is computed. Additionally, an output file is written, where the absolute number of particles per pole is given. The second value corresponds to the number of steps after which the second file with the absolute pole occupation is written.
 
 Note that the word and number separation in the input file should be done with the **tab key** (the program is only tested for this case).  
 
@@ -115,7 +124,7 @@ BDHM consits of multiple C files. Here, a summary of the corresponding content o
 - **bda.c:** Here, the integrators are implemented. How the particles are moved during each simulation step can be found in this file.
 - **calc.c:** Functions for observables that can be computed during a simulation are given in calc.c.
 - **distance.c:** Contains functions to compute the distance between particles.
-- **flow.c:** Corresponds to the optional poiseuille flow.
+- **flow.c:** Corresponds to the optional Poiseuille flow.
 - **force.c:** All functions that correspond to the different forces between the components of the systems are summarized here.
 - **hi.c:** The treatment of the hydrodynamic interactions of the system is implemented in this file.
 - **init.c:** Initialization of the system at the start of the simulation is organized in init.c.
