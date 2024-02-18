@@ -62,14 +62,10 @@ where the parameters of the simulation are stated in the file **inputfile**. Not
 in the console. The input file has always the form of the following example:
 
 ``
-Geometry	6.000000	4	15	10.000000
-
+Geometry	6.000000	4	15	10.000000 \n
 InitBox	24.000000	4.000000	7.000000
-
 N	2
-
 dt	0.000000005
-
 StepNumber	10000	10
 Magnetics	145.0 0.000000	1.000000	0.000000	9314.47
 HiMode	1
