@@ -17,7 +17,7 @@ By reproducing the qualitative behavior of the experiments in [1] with the heavi
  <a id="What"></a>
 # What BDHM is and what it is not
 
-BDHM is a heavily simplified toy model that trades physical rigorosity for straightforward concepts to act as a proof of concept for the experiments and the suggested system of [1]. It successfully reproduces the dynamic behavior of the experiments qualitatively and, thus, shows that the found results are independent of the concrete realization of the system. However, BDHM does not generate precise quantitative results, and the corresponding simulation results should be interpreted qualitatively. Nevertheless, compared to the resolution of the experiments, BDHM can be used to get a rough idea of the behavior of the system on the particle level.
+BDHM is a heavily simplified toy model that trades physical rigorosity for straightforward concepts to act as a proof of concept for the experiments and the suggested system of [1]. It successfully reproduces the dynamic behavior of the experiments qualitatively and, thus, shows that the found results are independent of the concrete realization of the system. However, BDHM does not generate precise quantitative results, and the corresponding numerical data should be interpreted qualitatively. Nevertheless, compared to the resolution of the experiments, BDHM can be used to get a rough idea of the behavior of the system on the particle level.
 
  <a id="Requirements"></a>
 # Requirements
@@ -30,9 +30,12 @@ To compile BDHM, the library GSL must be linked. However, in the studies present
 # How to build BDHM
 
 An example makefile is given in the repository. As usually, it can be used to compile the progam by typing **make** in the console while being in the folder that contains the source files. If BDHM must be build "by hand", the particular C files that contain the different functions (i.e., all files except BDHM.c) can be compiled with
+
 ``
-gcc 
+gcc -Wall -std=c99 -O3 -g -flto -c *filename* 
 ``
+
+first.
 
  <a id="Assumptions"></a>
 # Assumptions and simplifications
