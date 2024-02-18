@@ -10,6 +10,7 @@ By reproducing the qualitative behavior of the experiments in [1] with the heavi
  - [What BDHM is and what it is not](#What)
  - [Requirements](#Requirements)
  - [How to build BDHM](#Build)
+ - [How to use BDHM](#Use)
  - [Assumptions and simplifications](#Assumptions)
  - [Contents of the particular files](#Contents)
  - [Disclaimer](#Disclaimer)
@@ -42,6 +43,23 @@ gcc -Wall -std=c99 -O3 -g -flto -c lists.o inputdata.o distance.o init.o printda
 ``
 
 in the console.
+
+ <a id="Use"></a>
+# How to use BDHM
+
+BDHM must be executed in the console using
+
+``
+./BD.out inputfile
+``
+
+where the parameters of the simulation are stated in the file **inputfile**. Note that this input file is "static" meaning that parameter must always be stated at the same position. If inputfile is not present in the folder where BDHM is executed, the program exists with an error. To generate a new example input file, use the line
+
+``
+./BD.out Setup
+``
+
+in the console. 
 
  <a id="Assumptions"></a>
 # Assumptions and simplifications
