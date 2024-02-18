@@ -35,7 +35,7 @@ An example makefile is given in the repository. As usually, it can be used to co
 gcc -Wall -std=c99 -O3 -g -flto -c filename.c 
 ``
 
-first. Afterward, the main file BDHM.c must be compiled while linking everything together. This can be through typing
+first. Afterward, the main file BDHM.c must be compiled while linking everything together. This can be done through typing
 
 ``
 gcc -Wall -std=c99 -O3 -g -flto -c lists.o inputdata.o distance.o init.o printdata.o hi.o bda.o force.o magnetics.o verletlist.o printdisplay.o flow.o partmanagement.o calc.o BDHM.o -o BDHM3.out -lgsl -lgslcblas -lm
