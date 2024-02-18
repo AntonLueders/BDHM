@@ -1,6 +1,6 @@
 # Introduction
 
-BDHM (Brownian Dynamics with Hydrodynamics and Magnetic forces) combines magnetic dipole interactions and hydrodynamic interactions on the point particle level with a heuristic repulsion model for the spatial expansion of the colloids to imitate the dynamics of the experiments described in 
+BDHM (Brownian Dynamics with Hydrodynamics and Magnetic forces) combines magnetic dipole interactions and hydrodynamics on the point particle level with a heuristic repulsion model for the spatial expansion of the colloids to imitate the dynamics of the experiments described in 
 
 [1] Scalable high-throughput microfluidic separation of magnetic microparticles by Hongti Gu et al.
 
