@@ -86,7 +86,7 @@ The particular lines of such an input file and the meaning of the numbers are su
 - **dt:** Length of the simulation step (in units of the Brownian time given by the squared diameter divided by diffusion coefficient).
 - **StepNumber:** This line of the input file defines the number of the performed simulation steps. The first value is the total number of simulation steps. The second number defines the distance of consecutive simulation steps that are saved in a generated output file (i.e., in the example, every 10th simulation step is saved).
 
-Note that the word and number separation in the input file should be done with the **tab key** (the program is tested for this case).  
+Note that the word and number separation in the input file should be done with the **tab key** (the program is only tested for this case).  
 
  <a id="Assumptions"></a>
 # Assumptions and simplifications
