@@ -9,6 +9,7 @@ Reproducing the qualitative behavior of the experiments in Ref.1 with the heavil
 # Table of content:
  - [What BDHM is and what it is not](#What)
  - [Assumptions and simplifications](#Assumptions)
+ - [Contents of the particular files](#Contents)
  - [Disclaimer](#Disclaimer)
 
  <a id="What"></a>
@@ -30,8 +31,30 @@ In the following, we list some assumptions and simplifications made by BDHM. In 
 - Contact friction between touching colloids is not taken into account.
 - The magnetic interactions are cut after a certain distance (see the supporting information of Ref.1).
 - Minimum image convention is used for the hydrodynamic and magnetic interactions when periodic boundary conditions are applied. Even for these long-ranged interactions, only interactions with the nearest periodic image are taken into account for simplicity.
+- The magnitude of the rotating magnetic field is kept constant.
 
 Note that the toy model BDHM successfully reproduces the main qualitative behavior found in the experiments, even with all these simplifications.
+
+ <a id="Contents"></a>
+# Contents of the particular files
+
+BDHM consits of multiple C files. Here, a summary of the corresponding content of the particular files is given.
+
+- **BDHM.c:** Main file which contains the simulation loop. It calls functions grouped together in the other files.
+- **bda.c:** Here, the integrators are implemented. How the particles are moved during each simulation step can be found in this file.
+- **calc.c:** Functions for observables that can be computed during a simulation are given in calc.c.
+- **distance.c:** Contains functions to compute the distance between particles.
+- **flow.c:** Corresponds to the optional poiseuille flow.
+- **force.c:** All functions that correspond to the different forces between the components of the systems are summarized here.
+- **hi.c:** The treatment of the hydrodynamic interactions of the system is implemented in this file.
+- **init.c:** Initialization of the system at the start of the simulation is organized in init.c.
+- **inputdata.c:** All functions in the context of the input file with the parameters are given here.
+- **lists.c:** BDHM uses linked lists as a data structure. Here, the corresponding functions are implemented.
+- **magnetics.c:** Contains the functions in the context of the magnetic properties of the systems such as the magnetic moments and the external field.
+- **partmanagement.c:** This file contains functions to add or delete particles to the system.
+- **printdata.c:** Here, the functions that "dump" the output data are summarized.
+- **printdisplay.c:** This file contains the text that is written to the console.
+- **verletlist.c:** In verletlist.c, the functions to check if the Verlet lists must be updated are implemented. Verlet lists are a method to reduce the computation time of the simulations.
 
  <a id="Disclaimer"></a>
 # Disclaimer
