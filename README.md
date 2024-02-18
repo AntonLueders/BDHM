@@ -50,16 +50,35 @@ in the console.
 BDHM must be executed in the console using
 
 ``
-./BD.out inputfile
+./BDHM.out inputfile
 ``
 
 where the parameters of the simulation are stated in the file **inputfile**. Note that this input file is "static" meaning that parameter must always be stated at the same position. If inputfile is not present in the folder where BDHM is executed, the program exists with an error. To generate a new example input file, use the line
 
 ``
-./BD.out Setup
+./BDHM.out Setup
 ``
 
-in the console. 
+in the console. The input file has always the form of the following example:
+
+``
+Geometry	6.000000	4	15	10.000000
+InitBox	24.000000	4.000000	7.000000
+N	2
+dt	0.000000005
+StepNumber	10000	10
+Magnetics	145.0 0.000000	1.000000	0.000000	9314.47
+HiMode	1
+VerletList	1.500000
+Seed	100
+Flow	1000000.0
+ParticleManagement	1	30
+StationaryMode 1
+CalcVelocity	0	4
+CalcParticlesPerPole	0	5000
+``
+
+
 
  <a id="Assumptions"></a>
 # Assumptions and simplifications
