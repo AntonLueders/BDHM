@@ -59,5 +59,5 @@ BDHM consits of multiple C files. Here, a summary of the corresponding content o
  <a id="Disclaimer"></a>
 # Disclaimer
 
-Note that BDHM is not an ongoing software project with active support. Instead, it is part of the supporting information of Ref.1 and reflects the state of the software used to obtain the corresponding numerical results. For any questions regarding Ref.1 and the corresponding data, please contact the corresponding authors.
+Note that BDHM is not an ongoing software project with active support. Instead, it is part of the supporting information of Ref.1 and reflects the state of the software used to obtain the corresponding numerical results. Hence, this software is not optimized for user accessibility but is grown with the needs of the underlying study. For any questions regarding Ref.1 and the corresponding data, please contact the corresponding authors.
 
