@@ -13,6 +13,7 @@ By reproducing the qualitative behavior of the experiments in [1] with the heavi
  - [How to use BDHM](#Use)
  - [What BDHM does](#What)
  - [Assumptions and simplifications](#Assumptions)
+ - [How to interprete BDHM data](#Data)
  - [Contents of the particular files](#Contents)
  - [Disclaimer](#Disclaimer)
 
@@ -100,8 +101,11 @@ Note that the word and number separation in the input file should be done with t
 
 # What BDHM does
 
-All details of BDHM are given in the supporting information of [1]. Using the parameters defined in the input file, BDHM generates an array of micromagnets that are separated by a repulsive wall from superparamagnetic colloids that are located in the "positive half volume" of the setup. Additionally, a rotating magnetic is applied which influences the the colloid dynamics and the "soft-magnetic" micromagnets. BDHM possesses two main modes. The first mode (StationaryMode 1) corresponds to the studies without an additional flow field. Here, the function **CalcVelocity** can be used to determine the velocity of "particle bands" moving along the grid due to the rotation of the external field. The velocity calculation starts when the first 20 colloids pass the fourth line of micromagnets perpendicular to the movement direction. The "finish line" (i.e., the line of micromagnets perpendicular to the movement direction where the velocity calculation stops) can be defined in the input file. When the first 20 particles pass the finish line, the simulation stops, and the velocity is "dumped" in the console. Also in this mode, the number of colloids per occupied micromagnet can be computed with the option **CalcParticlesPerPole**. The corresponding data is written in separate output files. During this mode, simplified periodic boundary conditions are applied in the x and y direction. The second main mode (StationaryMode 0) corresponds to the studies in [1] with a Poiseuille flow field. Here, additional repulsive walls are added to the system (parallel to the first wall and perpendicular to the movement direction at the end of the array). These walls are not considered in the computations of the hydrodynamic interactions for simplicity. If this mode is chosen, new particles "spawn" at one side of the grid, and particles that leave the micromagnetic array are deleted (they are stored at a position outside of the array). During a simulation, the particle positions are written in an xyz file, which can be used in programs such as VMD to visualize the dynamics.     
+All details of BDHM are given in the supporting information of [1]. Using the parameters defined in the input file, BDHM generates an array of micromagnets that are separated by a repulsive wall from superparamagnetic colloids that are located in the "positive half volume" of the setup. Additionally, a rotating magnetic is applied which influences the the colloid dynamics and the "soft-magnetic" micromagnets. 
 
+BDHM possesses two main modes. The first mode (StationaryMode 1) corresponds to the studies without an additional flow field. Here, the function **CalcVelocity** can be used to determine the velocity of "particle bands" moving along the grid due to the rotation of the external field. The velocity calculation starts when the first 20 colloids pass the fourth line of micromagnets perpendicular to the movement direction. The "finish line" (i.e., the line of micromagnets perpendicular to the movement direction where the velocity calculation stops) can be defined in the input file. When the first 20 particles pass the finish line, the simulation stops, and the velocity is "dumped" in the console. Also in this mode, the number of colloids per occupied micromagnet can be computed with the option **CalcParticlesPerPole**. The corresponding data is written in separate output files. During this mode, simplified periodic boundary conditions are applied in the x and y direction. 
+
+The second main mode (StationaryMode 0) corresponds to the studies in [1] with a Poiseuille flow field. Here, additional repulsive walls are added to the system (parallel to the first wall and perpendicular to the movement direction at the end of the array). These walls are not considered in the computations of the hydrodynamic interactions for simplicity. If this mode is chosen, new particles "spawn" at one side of the grid, and particles that leave the micromagnetic array are deleted (they are stored at a position outside of the array). During a simulation, the particle positions are written in an xyz file, which can be used in programs such as VMD to visualize the dynamics.     
  <a id="Assumptions"></a>
 # Assumptions and simplifications
 
@@ -119,6 +123,10 @@ In the following, we list some assumptions and simplifications made by BDHM. In 
 - The magnitude of the rotating magnetic field is kept constant.
 
 Note that the toy model BDHM successfully reproduces the main qualitative behavior found in the experiments, even with all these simplifications.
+
+# How to interprete BDHM data
+
+Internally, the calculations are performed in units of the colloid diameter, the thermal energy *kT*, the Brownian time, and the diffusion coefficient of a colloid. Accordingly, the output data is also given in said units and must be converted to SI units for a comparison with the experiments. For instance, the particle band velocity is "dumped" in units of colloid diameter divided by the Brownian time and the particle positions in the xyz file are also given in units of the particle diameter. 
 
  <a id="Contents"></a>
 # Contents of the particular files
