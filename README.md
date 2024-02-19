@@ -126,7 +126,7 @@ Note that the toy model BDHM successfully reproduces the main qualitative behavi
 
 # How to interprete BDHM data
 
-Internally, the calculations are performed in units of the colloid diameter, the thermal energy *kT*, the Brownian time, and the diffusion coefficient of a colloid. Accordingly, the output data is also given in said units and must be converted to SI units for a comparison with the experiments. For instance, the particle band velocity is "dumped" in units of colloid diameter divided by the Brownian time and the particle positions in the xyz file are also given in units of the particle diameter. 
+Internally, the calculations are performed in units of the colloid diameter, the thermal energy *kT*, the Brownian time, and the diffusion coefficient of a colloid. Accordingly, the output data is also given in said units and must be converted to SI  for a comparison with the experiments. For instance, the particle band velocity is "dumped" in units of colloid diameter divided by the Brownian time and the particle positions in the xyz file are given in multiples of the particle diameter. Note also that the dimensions of the experimental setup can be used to approximate a connection between the maximum velocity of the Poiseuille flow and the volume flux measured in the experiments. A PDF file can be found in the repository, which lists the assumptions and conversion factors used for the comparisons in [1].
 
  <a id="Contents"></a>
 # Contents of the particular files
