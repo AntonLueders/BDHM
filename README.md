@@ -11,6 +11,7 @@ By reproducing the qualitative behavior of the experiments in [1] with the heavi
  - [Requirements](#Requirements)
  - [How to build BDHM](#Build)
  - [How to use BDHM](#Use)
+ - [What BDHM does](#What)
  - [Assumptions and simplifications](#Assumptions)
  - [Contents of the particular files](#Contents)
  - [Disclaimer](#Disclaimer)
@@ -96,6 +97,10 @@ The particular lines of such an input file and the meaning of the numbers are su
 - **CalcParticlesPerPole:** If this option is chosen (i.e., CalcParticlesPerPole	1), the average number of particles per occupied micromagnet is computed. Additionally, an output file is written, where the absolute number of particles per pole is given. The second value corresponds to the number of steps after which the second file with the absolute pole occupation is written.
 
 Note that the word and number separation in the input file should be done with the **tab key** (the program is only tested for this case).  
+
+# What BDHM does
+
+All details of BDHM are given in the supporting information of [1]. Using the parameters defined in the input file, BDHM generates an array of micromagnets that are separated by a repulsive wall from superparamagnetic colloids that are located in the "positive half volume" of the setup. Additionally, a rotating magnetic is applied which influences the the colloid dynamics and the "soft-magnetic" micromagnets. BDHM possesses two main modes. The first mode (StationaryMode 1) corresponds to the studies without an additional flow field. Here, the function **CalcVelocity** can be used to determine the velocity of "particle bands" moving along the grid due to the rotation of the external field. The velocity calculation starts when the first 20 colloids pass the fourth line of micromagnets perpendicular to the movement direction. The "finish line" (i.e., the line of micromagnets perpendicular to the movement direction where the velocity calculation stops) can be defined in the input file. When the first 20 particles pass the finish line, the simulation stops, and the velocity is "dumped" in the console. Also in this mode, the number of colloids per occupied micromagnet can be computed with the option **CalcParticlesPerPole**. The corresponding data is written in separate output files. During this mode, simplified periodic boundary conditions are applied in the x and y direction. The second main mode (StationaryMode 0) corresponds to the studies in [1] with a Poiseuille flow field. Here, additional repulsive walls are added to the system (parallel to the first wall and perpendicular to the movement direction at the end of the array). These walls are not considered in the computations of the hydrodynamic interactions for simplicity. If this mode is chosen, new particles "spawn" at one side of the grid, and particles that leave the micromagnetic array are deleted (they are stored at a position outside of the array). During a simulation, the particle positions are written in an xyz file, which can be used in programs such as VMD to visualize the dynamics.     
 
  <a id="Assumptions"></a>
 # Assumptions and simplifications
