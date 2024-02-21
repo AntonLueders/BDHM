@@ -4,7 +4,7 @@
 
 // Generates the list of particles that a currently in the simulation and particles
 // that are currently waiting to spawn in the simulation. This split is relevant for
-// the simulations with the Poiseuille flow, where particles enter and leave the simulation.
+// the simulations with the Poiseuille flow, where particles enter and leave the system.
 void InitPartLists() {
         
     partInSim = malloc(sizeof(Node));
@@ -62,11 +62,16 @@ int AddParticle(Particle *P) {
             for (int d = 0; d < dim; d++) {
                 
                 P[i].r[d] = init_box[d] * gsl_rng_uniform(generator);
+                // Pushes the new particle outside the init_box 
+                // and away from the micromagnet array
                 if (d == 0) {
                     P[i].r[d] -= init_box[d];
+                // Increases distance to the bottom wall for numerical stability
                 } else if (d == 2) {
                     if (P[i].r[d] < 0.75) {
                         P[i].r[d] += 0.75;
+                    // Increases distance to the top wall for numerical stability
+                    // Note the finite size of the particles
                     } else if (!stationary_mode && P[i].r[d] > Box[2] - 0.5) {
                         P[i].r[d] -= 0.5;
                     }
@@ -105,7 +110,8 @@ int AddParticle(Particle *P) {
 // ----------------------------------------------------------------------------------------
 
 // Removes particles from the simulation after leaving the simulation box.
-// This is only relevant when periodic boundary conditions are not applied (i.e., if stationary_mode = 0).
+// This is only relevant when periodic boundary conditions are not applied 
+// (i.e., if stationary_mode = 0).
 int DeleteParticle(Particle *p_i, int index_i) {
     
     bool delete_it = false;
@@ -134,9 +140,9 @@ int DeleteParticle(Particle *p_i, int index_i) {
 
 // ----------------------------------------------------------------------------------------
 
-// Checks for each particle, if it left the simulation box and if so, deletes it. 
+// Checks for each particle, if it moved outside the simulation box and if so, deletes it. 
 // Returns true if a at least one particle was deleted.
-int CheckForDeltetion(Particle *P) {
+int CheckForDeletion(Particle *P) {
     
     bool part_was_deleted = false;
     
