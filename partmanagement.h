@@ -9,7 +9,7 @@ void InitPartLists();
 void FreePartLists();
 int AddParticle(Particle *P);
 int DeleteParticle(Particle *p_i, int index_i);
-int CheckForDeltetion(Particle *P);
+int CheckForDeletion(Particle *P);
 void CheckStability(Particle *P);
 
 #endif
