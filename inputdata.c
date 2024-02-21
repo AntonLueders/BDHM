@@ -30,8 +30,8 @@ void PrintInputfile() {
 
 // ----------------------------------------------------------------------------------------
 
-// Reads inputfile. First, the "temp" variables are generated. If reading the input
-// was successful, the global variables are set to the temp values.
+// Reads inputfile. First, the parameters are stored in the "temp" variables are generated. 
+// If reading the input was successfully, the global variables are set to the temp values.
 void ReadInput() {
 
     // If there is no inputfile, an error occures.
@@ -198,7 +198,7 @@ void CheckForConflict() {
     }
     
     if (fabs(sqrt(H[0] * H[0] + H[1] * H[1] + H[2] * H[2]) - 1.) >= pow(10., -10.)) {
-        printf("ERROR: H direction not normalized.\n");
+        printf("ERROR: H direction must be normalized.\n");
         exit(1);    
     }
     
@@ -208,10 +208,13 @@ void CheckForConflict() {
     }
     
     if (!stationary_mode && calc_velocity) {
-        printf("ERROR: Velocity calculation only defined for StationaryMode.\n");
+        printf("ERROR: Velocity calculation only defined for StationaryMode 1.\n");
         exit(1);
     }
-    
+
+    // To avoid inaccuracies because of the periodic bounadry conditions, the "goal"
+    // for the velocity must have a distance of 3 lines of micromagents from the
+    // baundaries of the system.
     if (calc_velocity && (goal_pole + 3 > num_poles[1] || goal_pole <= start_pole)) {
         printf("ERROR: Goal does not exist.\n");
         exit(1);
