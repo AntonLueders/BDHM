@@ -202,7 +202,7 @@ int main(int argc, char *argv[]) {
 
         // If a flow field is applied: Removes particles that are outside of the grid
         if(!stationary_mode) {
-            part_was_deleted = CheckForDeltetion(P);     // See partmanagement.c
+            part_was_deleted = CheckForDeletion(P);     // See partmanagement.c
         }
         
         // Checks for unphysical movements
