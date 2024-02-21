@@ -60,7 +60,7 @@ Node *partInSim = NULL;                                     // All particles cur
 Node *waitingParticles = NULL;                              // All particles currently not in the simulation box
 
 // ----------------------------------------------------------------------------------------
-// Start of program
+// Start of the program
 // ----------------------------------------------------------------------------------------    
 
 int main(int argc, char *argv[]) {
