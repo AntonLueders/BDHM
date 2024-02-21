@@ -72,7 +72,7 @@ int main(int argc, char *argv[]) {
     PrintWelcome();
     
     // The programm only runs with "inputfile" in the same folder. 
-    // A new inputfile can be generated with "./BDHM3.exe Setup"
+    // A new inputfile can be generated with "./BDHM3.out Setup"
     if (argc == 2 && !strcmp(argv[1], "Setup")) {
 
         // Generates an example input file which can be customized. 
@@ -89,12 +89,14 @@ int main(int argc, char *argv[]) {
     }
     
     ReadInput();     // See inputdata.c
-    
+
+    // Checks the input parameters for conflict
     CheckForConflict();     // See inputdata.c
     
     // Prints input parameter in console.
     PrintInput();     // See printdisplay.c
-    
+
+    // Computes magnetic properties of the micromagnets
     CalcAnisotropiePoles();     // See magnetics.c
     F_dipol_0 = CalcFDipol();     // See magnetics.c
 
@@ -144,15 +146,18 @@ int main(int argc, char *argv[]) {
         if ((step + 1) % stepsrate == 0) {
             // Prints position (.xyz file)
             Print(position_file, P, Poles, step);     // See printdata.c 
+            // Calculates particle per occupied micromagnet
             if (calc_particles_per_pole) {
                 PrintParticlesPerPole(step * dt, CalcParticlesPerPole(P));     // See calc.c
             }
         }
-        
+
+        // Array file for band width calculation
         if(calc_particles_per_pole && step + 1 == pole_array_step) {
             PrintPoleArray(P);     // See calc.c
         }
-        
+
+        // If a flow field is applied: Adds new particle
         if ((step + 1) % N_rate == 0 && !stationary_mode) {
             part_was_added = AddParticle(P);      // See partmanagement.c
         }
@@ -171,11 +176,13 @@ int main(int argc, char *argv[]) {
         } else {
             CalcForceWithVerlet(P, Poles, Wall);     // See force.c
         }
-        
+
+        // Calculates the grand diffusion tensor for HIs
         if (hi_mode > 0) {
             CalcDTensor(P, D_Tensor);     // See hi.c
         }
-        
+
+        // Velocity calculation
         if (stationary_mode && calc_velocity) {
             if(!start_calc_velocity) {
                 // Checks if particle reached the start line
@@ -192,14 +199,16 @@ int main(int argc, char *argv[]) {
         }
         
         Move(P,D_Tensor);     // See bda.c
-        
+
+        // If a flow field is applied: Removes particles that are outside of the grid
         if(!stationary_mode) {
-            part_was_deleted = CheckForDeletion(P);     // See partmanagement.c
+            part_was_deleted = CheckForDeltetion(P);     // See partmanagement.c
         }
         
         // Checks for unphysical movements
         CheckStability(P);     // See partmanagement.c
 
+        // Rotates the external H field
         RotateH(H_freq);     // See magnetics.c
     }
     
