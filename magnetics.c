@@ -56,7 +56,10 @@ void CalcAnisotropiePoles() {
 
 // Calculates the strength of the magnetic dipole interactions
 double CalcFDipol() {
-    
+
+    // First factor summerizes all fixed factors contained in F0 of the magentic dipol 
+    // interactions. Second factor is the magentic field in mT. Third factor deals
+    // with the m in mT. Fourth factor transforms N in k_BT/sigma.
     double F_0 = 3.19042969 * pow(10., -9.) * pow(B_field_strength, 2.) * pow(10., -6.) 
                  * (2.47073956 * pow(10., 15.));
     
