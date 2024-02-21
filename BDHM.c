@@ -194,7 +194,7 @@ int main(int argc, char *argv[]) {
         Move(P,D_Tensor);     // See bda.c
         
         if(!stationary_mode) {
-            part_was_deleted = CheckForDeltetion(P);     // See partmanagement.c
+            part_was_deleted = CheckForDeletion(P);     // See partmanagement.c
         }
         
         // Checks for unphysical movements
