@@ -32,7 +32,7 @@ To compile BDHM, the library GSL must be linked. However, in the studies present
  <a id="Build"></a>
 # How to build BDHM
 
-An example makefile is given in the repository. As usual, it can be used to compile the program by typing **make** in the console while being in the folder that contains the source files. If BDHM must be built "by hand", the particular C files that contain the different functions (i.e., all files except BDHM.c) can be compiled with
+An example makefile is given in the repository. As usual, it can be used to compile the program by typing **make** in the console while being in the folder that contains the source files. If BDHM must be built "by hand", the particular C files that contain the different functions (i.e., all seperate C files) can be compiled with
 
 ``
 gcc -Wall -std=c99 -O3 -g -flto -c filename.c 
