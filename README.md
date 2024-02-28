@@ -55,7 +55,7 @@ BDHM must be executed in the console using
 ./BDHM3.out 
 ``
 
-where the parameters of the simulation must be stated in a file **inputfile** which is in the same folder as the binary. Note that this input file is "static" meaning that parameter must always be stated at the same position. If inputfile is not present in the folder where BDHM is executed, the program exists with an error. To generate a new example input file, use the line
+where the parameters of the simulation must be stated in a file called **inputfile** which is in the same folder as the binary. Note that this input file is "static" meaning that parameter must always be stated at the same position. If inputfile is not present in the folder where BDHM is executed, the program exists with an error. To generate a new example input file, use the line
 
 ``
 ./BDHM3.out Setup
