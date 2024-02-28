@@ -48,7 +48,7 @@
 #define V_FLOW_MAX 10.
 #define N_START 20
 #define N_RATE 10
-#define STATIONARY_MODE 0
+#define STATIONARY_MODE 1
 #define CALC_VELOCITY 0
 #define START_POLE 4
 #define GOAL_POLE 6
