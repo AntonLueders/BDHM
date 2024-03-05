@@ -71,7 +71,7 @@ int main(int argc, char *argv[]) {
     
     PrintWelcome();
     
-    // The programm only runs with "inputfile" in the same folder. 
+    // The program only runs with "inputfile" in the same folder. 
     // A new inputfile can be generated with "./BDHM3.out Setup"
     if (argc == 2 && !strcmp(argv[1], "Setup")) {
 
@@ -109,7 +109,8 @@ int main(int argc, char *argv[]) {
     Particle Poles[num_poles[0] * num_poles[1]];
     
     Particle Wall[3];
-    
+
+    // Init. the linked lists that store the particles in the simulations
     InitPartLists();     // partmanagement.c
     
     bool part_was_deleted = false;
@@ -118,8 +119,8 @@ int main(int argc, char *argv[]) {
     bool start_calc_velocity = false;
     int start_time_calc_velocity = 0;
     
-    // See GSL documentation for more infos regarding the generator.
-    // GLS has to be linked for random numbers!
+    // See GSL documentation for more info regarding the generator.
+    // GLS has to be linked to get random numbers!
     generator = gsl_rng_alloc(gsl_rng_ranlxs0);
     printf("Random number generator algorithm: gsl_rng_ranlxs0\n");
     gsl_rng_set(generator, seed);
@@ -144,7 +145,7 @@ int main(int argc, char *argv[]) {
     for(int step = 0; step < steps; step++) {
         
         if ((step + 1) % stepsrate == 0) {
-            // Prints position (.xyz file)
+            // Prints positions (xyz file)
             Print(position_file, P, Poles, step);     // See printdata.c 
             // Calculates particle per occupied micromagnet
             if (calc_particles_per_pole) {
@@ -152,7 +153,7 @@ int main(int argc, char *argv[]) {
             }
         }
 
-        // Array file for band width calculation
+        // Array file for calculating the width of the particle bands 
         if(calc_particles_per_pole && step + 1 == pole_array_step) {
             PrintPoleArray(P);     // See calc.c
         }
@@ -164,6 +165,8 @@ int main(int argc, char *argv[]) {
         
         // Checks if Verlet lists have to be updated. 
         if (CheckVerlet(P) || step == 0 || part_was_added || part_was_deleted) {
+            // Calculates force and saves current particle positions 
+            // for the Verlet list algorithm
             CalcForce(P, Poles, Wall);     // See force.c
             // Counts how often Verlet lists were updated during the simulation
             counter_ver++;
@@ -174,6 +177,7 @@ int main(int argc, char *argv[]) {
                 part_was_added = false;
             }
         } else {
+            // Calculates pair interactions
             CalcForceWithVerlet(P, Poles, Wall);     // See force.c
         }
 
@@ -185,12 +189,12 @@ int main(int argc, char *argv[]) {
         // Velocity calculation
         if (stationary_mode && calc_velocity) {
             if(!start_calc_velocity) {
-                // Checks if particle reached the start line
+                   // Checks if the particle reached the start line
                 start_calc_velocity = CalcVelocityStart(P);     // See calc.c
                 start_time_calc_velocity = step;
             }
             if(start_calc_velocity) {
-                // Checks if particle reached the finish line
+                // Checks if the particle reached the finish line
                 if (CalcVelocity(P)) {     // See calc.c
                     PrintVelocity(step - start_time_calc_velocity);     // See calc.c
                     break;
@@ -200,12 +204,13 @@ int main(int argc, char *argv[]) {
         
         Move(P,D_Tensor);     // See bda.c
 
-        // If a flow field is applied: Removes particles that are outside of the grid
+        // If a flow field is applied: Removes particles that are outside of 
+        // the micromagnet array
         if(!stationary_mode) {
             part_was_deleted = CheckForDeletion(P);     // See partmanagement.c
         }
         
-        // Checks for unphysical movements
+        // Checks for unexpected displacements
         CheckStability(P);     // See partmanagement.c
 
         // Rotates the external H field
@@ -222,7 +227,7 @@ int main(int argc, char *argv[]) {
     
     free(D_Tensor);
     
-    // Obtains the calender time at the end of the simulation.
+    // Obtains the calendar time at the end of the simulation.
     time_t now;
     time(&now);
 
