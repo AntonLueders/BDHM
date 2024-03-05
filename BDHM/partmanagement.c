@@ -10,7 +10,8 @@ void InitPartLists() {
     partInSim = malloc(sizeof(Node));
     partInSim->value = -1;
     partInSim->next = NULL;
-    
+
+    // The number of particles is different for StationaryMode 0 and 1 
     int N_limit = 0;
     if (stationary_mode) {        
         N_limit = N;
@@ -87,7 +88,8 @@ int AddParticle(Particle *P) {
                 
                 double dij[3];
                 double dissq = 0.;
-                
+
+                // Particles overlap if they would interact via the WCA potential
                 dissq = Distance(&(P[i]), &(P[j]), dij);     // See distance.c
                 if(sqrt(dissq) < pow(2., 1. / 6.) * (P[i].sigma + P[j].sigma) / 2.) {
                     check_overlap = true;
