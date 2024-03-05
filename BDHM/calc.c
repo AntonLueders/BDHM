@@ -2,7 +2,7 @@
 
 // ----------------------------------------------------------------------------------------
 
-// Checks if particles reached the finish line
+// Checks if the particles reached the finish line
 int CalcVelocity(Particle *P) {
     
     int count_particle_in_goal = 0;
@@ -12,14 +12,14 @@ int CalcVelocity(Particle *P) {
         
         int i = current->value;
         
-        // Second condition accounts for errors resulting from periodic boundaries
+        // Second condition accounts for errors that can result from periodic boundaries
         if (P[i].r[1] > distance_poles / 2. + (double)goal_pole * distance_poles 
                   && P[i].r[1] < distance_poles / 2. + (double)(goal_pole + 3) * distance_poles) {
             
             count_particle_in_goal++;
         }
         
-        // "front_number" is the the number of particle needed to pass the line
+        // "front_number" is the number of particles needed to pass the line
         // for the function to register that the finish line is reached
         if (count_particle_in_goal >= front_number) {
             return 1;
@@ -50,7 +50,7 @@ int CalcVelocityStart(Particle *P) {
             count_particle_at_start++;
         }
         
-        // "front_number" is the the number of particle needed to pass the line
+        // "front_number" is the number of particles needed to pass the line
         // for the function to register that the start line is reached
         if (count_particle_at_start >= front_number) {
             return 1;
@@ -64,7 +64,7 @@ int CalcVelocityStart(Particle *P) {
 
 // ----------------------------------------------------------------------------------------
 
-// Calculates and prints velocity of particles
+// Calculates and prints the velocity of particles
 void PrintVelocity(int step) {
     
     printf("Particle velocity:\t%f\n", ((double)goal_pole - (double)start_pole) * distance_poles 
@@ -82,7 +82,7 @@ void CalcPoleArray(Particle *P, int pole_array[num_poles[0]][num_poles[1]]) {
         }
     }
 
-    // Creats a histogram counting particles at the particular micromagnets
+    // Creates a histogram counting particles at the particular micromagnets
     Node *current = partInSim->next;
     while (current != NULL) {
         
