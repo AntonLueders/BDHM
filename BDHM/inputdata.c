@@ -31,7 +31,7 @@ void PrintInputfile() {
 // ----------------------------------------------------------------------------------------
 
 // Reads inputfile. First, the parameters are stored in the "temp" variables are generated. 
-// If reading the input was successfully, the global variables are set to the temp values.
+// If reading the input was successful, the global variables are set to the temp values.
 void ReadInput() {
 
     // If there is no inputfile, an error occures.
@@ -71,7 +71,8 @@ void ReadInput() {
     int pole_array_step_temp = pole_array_step;
 
     // Reading the inputfile
-    if (fscanf(input, "%s\t%lf\t%d\t%d\t%lf%[^\n]\n", temp, &distance_poles_temp, &num_poles_temp[0], &num_poles_temp[1], &BoxZ_temp,
+    if (fscanf(input, "%s\t%lf\t%d\t%d\t%lf%[^\n]\n", temp, &distance_poles_temp, 
+        &num_poles_temp[0], &num_poles_temp[1], &BoxZ_temp,
                dummy) == 5) {
         distance_poles = distance_poles_temp;
         for (int d = 0; d < 2; d++) {
@@ -85,7 +86,8 @@ void ReadInput() {
         printf("ERROR: Check input or use Setup option. (Geometry)\n");
         exit(1);
     }
-    if (fscanf(input, "%s\t%lf\t%lf\t%lf%[^\n]\n", temp, &init_box_temp[0], &init_box_temp[1], &init_box_temp[2],
+    if (fscanf(input, "%s\t%lf\t%lf\t%lf%[^\n]\n", temp, &init_box_temp[0], 
+        &init_box_temp[1], &init_box_temp[2],
                dummy) == 4) {
         for (int d = 0; d < dim; d++) {
             init_box[d] = init_box_temp[d];
@@ -114,7 +116,8 @@ void ReadInput() {
         printf("ERROR: Check input or use Setup option. (StepNumber)\n");
         exit(1);
     }
-    if (fscanf(input, "%s\t%lf\t%lf\t%lf\t%lf\t%lf%[^\n]\n", temp, &B_field_strength_temp, &H_temp[0], &H_temp[1], &H_temp[2], &H_freq_temp,
+    if (fscanf(input, "%s\t%lf\t%lf\t%lf\t%lf\t%lf%[^\n]\n", temp, 
+        &B_field_strength_temp, &H_temp[0], &H_temp[1], &H_temp[2], &H_freq_temp,
                dummy) == 6) {
         B_field_strength = B_field_strength_temp;
         for (int d = 0; d < 3; d++) {
@@ -171,7 +174,8 @@ void ReadInput() {
         printf("ERROR: Check input or use Setup option. (CalcVelocity)\n");
         exit(1);
     }
-    if (fscanf(input, "%s\t%d\t%d%[^\n]\n", temp, &calc_particles_per_pole_temp, &pole_array_step_temp, dummy) == 3) {
+    if (fscanf(input, "%s\t%d\t%d%[^\n]\n", temp, &calc_particles_per_pole_temp, 
+        &pole_array_step_temp, dummy) == 3) {
         calc_particles_per_pole = calc_particles_per_pole_temp;
         pole_array_step = pole_array_step_temp;
     } else {
@@ -212,9 +216,9 @@ void CheckForConflict() {
         exit(1);
     }
 
-    // To avoid inaccuracies because of the periodic bounadry conditions, the "goal"
-    // for the velocity must have a distance of 3 lines of micromagents from the
-    // baundaries of the system.
+    // To avoid inaccuracies because of the periodic boundary conditions, the "goal"
+    // for the velocity must have a distance of 3 lines of micromagnets from the
+    // boundaries of the system.
     if (calc_velocity && (goal_pole + 3 > num_poles[1] || goal_pole <= start_pole)) {
         printf("ERROR: Goal does not exist.\n");
         exit(1);
