@@ -2,7 +2,7 @@
 
 // ----------------------------------------------------------------------------------------
 
-// Welcome screen with the informations of the program. (Is printed to the console).
+// Welcome screen with the information of the program. (Is printed to the console).
 void PrintWelcome() {
 
     printf("\n");
