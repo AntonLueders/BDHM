@@ -48,7 +48,7 @@ void FreePartLists() {
 
 // ----------------------------------------------------------------------------------------
 
-// Adds new particle to the simulation by taking one from the list of waiting particles.
+// Adds new particles to the simulation by taking one from the list of waiting particles.
 int AddParticle(Particle *P) {
     
     if (waitingParticles->next != NULL) {
