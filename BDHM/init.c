@@ -76,7 +76,7 @@ void InitRandom(Particle *P, Particle *Poles, Particle *Wall) {
                 }
             }
             
-        // Particles that are not in the simulation box at t = 0 are parked at this position
+        // Particles that are not in the simulation box at t = 0 waiting parked at this position
         // Only relevant for stationary_mode = 0        
         } else {
             
