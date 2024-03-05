@@ -2,7 +2,7 @@
 
 // ----------------------------------------------------------------------------------------
 
-// Weeks-Chandler-Andersen (WCA) potential
+// For the force corresponding to the Weeks-Chandler-Andersen (WCA) potential
 double CalcWCA(double sigmasq, double dijsq, double eps) {
 
     double inv_rsq_eff = sigmasq / dijsq;
@@ -20,13 +20,16 @@ void CalcDipole(double mi[3], double mj[3], double dissq, double dij[3], double 
     double mimj = 0.;
     double mirij = 0.;
     double mjrij = 0.;
-    
+
+    // Scalar products for the interaction force
     for (int d = 0; d < dim; d++) {
         mimj += mi[d] * mj[d];
+        // Note the negative sign resulting from the choice of direction for dij
         mirij -= mi[d] * dij[d];
         mjrij -= mj[d] * dij[d];
     }
-    
+
+    // Note the negative sign before dij resulting from the choice of direction for dij
     for (int d = 0; d < dim; d++) {
         f_mag[d] = F_0 / pow(dissq, 2.) * (mirij / dis * mj[d] + mjrij / dis * mi[d] 
                  - (5. * mjrij * mirij / dissq - mimj) * (- dij[d]) / dis);
@@ -80,13 +83,15 @@ double CalcPairMag(Particle *p_i, Particle *p_j) {
     
     dissq = Distance(p_i, p_j, dij);     // See distance.c
     
-    // To save computational cost. Unphysical, but we assume that we can neglect 
-    // the influence of particles after "rcut_dipol_part" micromagnets 
+    // To save computational cost. Unphysical, but we assume that we can neglect the influence 
+    // of magentic particle interactions after "rcut_dipol_part" micromagnets 
     if(sqrt(dissq) < rcut_dipol_part * distance_poles) {
         
         double f_mag_temp[3] = {0., 0., 0.};
         CalcDipole(p_i->m, p_j->m, dissq, dij, F_dipol_0, f_mag_temp);     // See force.c
-        
+
+        // The signs result from the fact that the formula for f_mag_temp describes
+        // the force acting on particle j due to particle i
         if(hi_mode == 1) {
             for (int d = 0; d < dim; d++) {
                 p_i->f_mag[d] -= f_mag_temp[d];
@@ -169,12 +174,14 @@ double CalcPole(Particle *p_i, Particle *pole_j) {
     CalcMomentPole(pole_j);     // See magnetics.c
     
     // To save computational cost. Unphysical, but we assume that we can neglect 
-    // the influence of micromagnets with distance "rcut_dipol_poles * distance_poles"
+    // the influence of micromagnets with a distance of "rcut_dipol_poles * distance_poles"
     if (sqrt(dissq) < rcut_dipol_poles * distance_poles) {
             
         double f_mag_temp[3] = {0., 0., 0.};
         CalcDipole(p_i->m, pole_j->m, dissq, dij, F_dipol_0, f_mag_temp);     // See force.c
-        
+
+        // The signs result from the fact that f_mag_temp is the force acting
+        // on the micromagnet because of the colloid i
         if(hi_mode == 1) {
             for (int d = 0; d < dim; d++) {
                 p_i->f_mag[d] -= f_mag_temp[d];
@@ -325,6 +332,7 @@ void CalcForce(Particle *P, Particle *Poles, Particle *Wall) {
         int i = current_4->value;
         
         for(int d = 0; d < dim; d++) {
+            // Is needed in CheckVerlet in verletlist.c
             P[i].r_old[d] = P[i].r[d];
         }
         
@@ -335,6 +343,8 @@ void CalcForce(Particle *P, Particle *Poles, Particle *Wall) {
 // ----------------------------------------------------------------------------------------
 
 // Main function to calculate the force WITH Verlet lists. 
+// This function is used in the simulation while the maximum displacement of
+// the colloids is smaller than the Verlet radius
 void CalcForceWithVerlet(Particle *P, Particle *Poles, Particle *Wall) {
 
 // ----------------------------------------------------------------------------------------
