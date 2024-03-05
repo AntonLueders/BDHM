@@ -3,6 +3,7 @@
 // ----------------------------------------------------------------------------------------
 
 // Writes the xyz position file
+// This file can be used for particle visualization (for instance with VMD - Visual Molecular Dynamics)
 void Print(FILE *f, Particle *P, Particle *Poles, int step) {
     
     fprintf(f, "%d\n", N + 2 * num_poles[0] * num_poles[1]);
