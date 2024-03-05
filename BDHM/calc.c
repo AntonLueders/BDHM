@@ -67,7 +67,8 @@ int CalcVelocityStart(Particle *P) {
 // Calculates and prints velocity of particles
 void PrintVelocity(int step) {
     
-    printf("Particle velocity:\t%f\n", ((double)goal_pole - (double)start_pole) * distance_poles / ((double)step * dt));
+    printf("Particle velocity:\t%f\n", ((double)goal_pole - (double)start_pole) * distance_poles 
+        / ((double)step * dt));
 }
 
 // ----------------------------------------------------------------------------------------
@@ -80,7 +81,8 @@ void CalcPoleArray(Particle *P, int pole_array[num_poles[0]][num_poles[1]]) {
             pole_array[i][j] = 0;
         }
     }
-    
+
+    // Creats a histogram counting particles at the particular micromagnets
     Node *current = partInSim->next;
     while (current != NULL) {
         
