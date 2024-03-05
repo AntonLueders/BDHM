@@ -332,7 +332,7 @@ void CalcForce(Particle *P, Particle *Poles, Particle *Wall) {
         int i = current_4->value;
         
         for(int d = 0; d < dim; d++) {
-            // Is needed in CheckVerlet in verletlist.c
+            // Is needed in CheckVerlet (verletlist.c) or CheckStability (partmanagement.c)
             P[i].r_old[d] = P[i].r[d];
         }
         
