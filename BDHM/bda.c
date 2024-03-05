@@ -15,7 +15,8 @@ void Move(Particle *P, double D_Tensor[N][N][3][3]) {
         while (current != NULL) {
         
             int i = current->value;
-            
+
+            // Velocity field from particle flow
             double v_flow[3] = {0., 0., 0.};
             if (!stationary_mode) {
                 PoiseuilleFlow(&(P[i]), v_flow);     // See flow.c
@@ -33,7 +34,7 @@ void Move(Particle *P, double D_Tensor[N][N][3][3]) {
         }
 
 // ----------------------------------------------------------------------------------------
-// HIs only for magnetic interactions (used in paper)
+// HIs only for magnetic interactions (used in the paper)
 // ----------------------------------------------------------------------------------------    
     
     } else if (hi_mode == 1) {
@@ -42,7 +43,8 @@ void Move(Particle *P, double D_Tensor[N][N][3][3]) {
         while (current != NULL) {
         
             int i = current->value;
-            
+
+            // Velocity field from particle flow
             double v_flow[3] = {0., 0., 0.};
             if (!stationary_mode) {
                 PoiseuilleFlow(&(P[i]), v_flow);     // See flow.c
@@ -85,7 +87,8 @@ void Move(Particle *P, double D_Tensor[N][N][3][3]) {
         while (current != NULL) {
         
             int i = current->value;
-            
+
+            // Velocity field from particle flow
             double v_flow[3] = {0., 0., 0.};
             if(!stationary_mode) {
                 PoiseuilleFlow(&(P[i]), v_flow);     // See flow.c
