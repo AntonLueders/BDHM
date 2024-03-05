@@ -168,5 +168,5 @@ Note that BDHM is **not** an ongoing software project with active support. Inste
  <a id="Experiment"></a>
 # Additional folders independent of BDHM
 
-This repository also contains the folder **Experiments_Solidworks_Files** with CAD files corresponding to the experiments of [1]. Full credit and responsibility for these files belong to Dr. Hongri Gu and Yonglin Chen, who designed and performed the experiments of [1]. Information on the particular files is given in the README PDF in the corresponding folder. For questions regarding the CAD files, please contact the corresponding authors of [1]. Note that the license declared in this repository applies to the simulation program **BDHM** only.
+This repository also contains the folder **Experiments_Solidworks_Files** with CAD files corresponding to the experiments of [1]. Full credit and responsibility for these files belong to Dr. Hongri Gu and Yonglin Chen, who designed and performed the experiments of [1]. Information on the particular files is given in the README PDF, which can be found in the corresponding folder. For questions regarding the CAD data, please contact the corresponding authors of [1]. Note that the license declared in this repository applies to the simulation program **BDHM** only.
 
