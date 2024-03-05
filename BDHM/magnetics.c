@@ -3,7 +3,7 @@
 // ----------------------------------------------------------------------------------------
 
 // Rotates a vector. Using a two-dimensional rotation matrix,
-// vec is rotated in respect to the angle phi and saved in new_vec
+// vec is rotated with respect to the angle phi and saved in new_vec
 void Rotation_Matrix(double phi, double vec[2], double new_vec[2]) {
 
     double Rot_Matrix[3][3];
@@ -35,7 +35,7 @@ void Rotation_Matrix(double phi, double vec[2], double new_vec[2]) {
 
 // ----------------------------------------------------------------------------------------
 
-// Calculates the magentic anisotropy (demagnetization factors) of the ellipsoidal micromagnets. 
+// Calculates the magnetic anisotropy (demagnetization factors) of the ellipsoidal micromagnets. 
 // These quantities enter the calculation of the magnetic susceptibility tensor of the micromagnets.
 // See, for instance, IEEE Transactions on Robotics, vol. 23, no. 6, pp. 1247-1252.
 void CalcAnisotropiePoles() {
@@ -57,9 +57,9 @@ void CalcAnisotropiePoles() {
 // Calculates the strength of the magnetic dipole interactions
 double CalcFDipol() {
 
-    // First factor summerizes all fixed factors contained in F0 of the magentic dipol 
-    // interactions. Second factor is the magentic flux density in mT. Third factor deals
-    // with the m in mT. Fourth factor transforms N in k_BT/sigma.
+    // The first factor summarizes all fixed factors contained in F0 of the magnetic dipole 
+    // interactions. The second factor is the magnetic flux density in mT. Third factor deals
+    // with the m in mT. The fourth factor transforms N in k_BT/sigma.
     double F_0 = 3.19042969 * pow(10., -9.) * pow(B_field_strength, 2.) * pow(10., -6.) 
                  * (2.47073956 * pow(10., 15.));
     
