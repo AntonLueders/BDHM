@@ -28,7 +28,7 @@ BDHM is a heavily simplified toy model that trades physical rigorosity for strai
 
 The program is written in *C* (C99 standard) and it can successfully be built with gcc 13.2 (which was tested through GitHub checks). The functionality was heavily tested for binaries made with gcc 6.3.0 and gcc 7.5.0. The data presented in [1] was mostly obtained through a binary obtained with icc (version 2020u4).
 
-To compile BDHM, the library GSL must be linked. However, in the studies presented in [1], GSL is only used for random numbers to generate the random initial conditions. Replacing these initial conditions with fixed ones, the program can easily be adjusted so that GSL is not needed (when repeating the numerical calculations of [1]). The functionality of BDHM was tested for GSL 2.4 and GSL 2.7.1 and the simulations in [1] were performed with a binary that linked the latter.
+To compile BDHM, the library GSL must be linked. However, in the studies presented in [1], GSL is only used for random numbers to generate the random initial conditions. Replacing these initial conditions with fixed ones, the program can easily be adjusted so that GSL is not needed (when repeating the numerical calculations of [1]). The functionality of BDHM was tested for GSL 2.4 and GSL 2.7.1 and the simulations in [1] were performed with a binary where the latter is linked.
 
  <a id="Build"></a>
 # How to build BDHM
