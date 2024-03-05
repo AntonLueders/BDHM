@@ -38,7 +38,7 @@ void InitRandom(Particle *P, Particle *Poles, Particle *Wall) {
         P[i].verList_mag->value = i;
         P[i].verList_mag->next = NULL;
         
-        // In stationary_mode, no new particle spawn and all particle are in the 
+        // In stationary_mode, no new particle spawn, and all particles are in the 
         // simulation box from the beginning
         int N_limit = 0;
         if(stationary_mode) {
@@ -131,11 +131,14 @@ void InitRandom(Particle *P, Particle *Poles, Particle *Wall) {
     }
     
     // Positioning the walls for maximum stability
+    // The 0.50 shift results from the choice of Wall.sigma = 1
+    // The deviation of 0.15 minimizes unphysical behavior near the
+    // wall because of the point particle HI approach
     Wall[0].r[2] = -0.35;
     Wall[1].r[2] = Box[2] + 0.65;
     Wall[2].r[1] = Box[1] + distance_poles + 0.5;
     
-    // Marks orientation of the walls, is needed for the calculation of
+    // Marks orientation of the walls which is needed for the calculation of
     // the force. See force.c
     Wall[0].m[2] = 1.;
     Wall[1].m[2] = 1.;
