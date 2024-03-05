@@ -2,7 +2,7 @@
 
 // ----------------------------------------------------------------------------------------
 
-// Check if Verlet-lists must be updated
+// Checks if Verlet-lists must be updated
 bool CheckVerlet(Particle *P) {
 
     Node *current = partInSim->next;
