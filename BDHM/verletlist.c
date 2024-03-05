@@ -9,7 +9,8 @@ bool CheckVerlet(Particle *P) {
     while (current != NULL) {
         
         int i = current->value;
-        
+
+        // Calculates displacement of the colloids during a Verlet cycle
         double dr = 0.;
         for (int d = 0; d < dim; d++) {
             if(stationary_mode && d < 2) {
@@ -19,7 +20,8 @@ bool CheckVerlet(Particle *P) {
             }
         }
         dr = sqrt(dr);
-
+        
+        // Calculates maximum displacement
         if (dr > dr_ver_max1) {
             dr_ver_max2 = dr_ver_max1;
             dr_ver_max1 = dr;
@@ -27,10 +29,12 @@ bool CheckVerlet(Particle *P) {
             dr_ver_max2 = dr;
         }
 
+        // Resets maximum displacement
         if (dr_ver_max1 + dr_ver_max2 > rcut_ver) {
             dr_ver_max1 = 0.;
             dr_ver_max2 = 0.;
-            
+
+            // Returns true if Verlet lists must be updated
             return true;
         }
         
@@ -44,7 +48,7 @@ bool CheckVerlet(Particle *P) {
 
 // Clears Verlet lists and frees allocated memory.
 void FreeVerLists(Particle *P, Particle *Poles, Particle *Wall) {
-    
+
     for(int i = 0; i < N; i++) {
         clearList(P[i].verList_ste);     // See lists.c
         free(P[i].verList_ste);
