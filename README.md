@@ -16,6 +16,7 @@ By reproducing the qualitative behavior of the experiments in [1] with the heavi
  - [Assumptions and simplifications](#Assumptions)
  - [Contents of the particular files](#Contents)
  - [Disclaimer](#Disclaimer)
+ - [Additional folders independent of BDHM](#Experiment)
 
  <a id="What"></a>
 # What BDHM is and what it is not
@@ -163,4 +164,9 @@ BDHM consits of multiple C files. Here, a summary of the corresponding content o
 # Disclaimer
 
 Note that BDHM is **not** an ongoing software project with active support. Instead, it is part of the supporting information of [1] and reflects the state of the software used to obtain the corresponding numerical results. Hence, this program is not optimized for user accessibility but is grown with the needs of the underlying study. For any questions regarding [1] and the corresponding data, please contact the corresponding authors.
+
+ <a id="Experiment"></a>
+# Additional folders independent of BDHM
+
+This repository also contains the folder **Experiments_Solidworks_Files** with CAD files corresponding to the experiments of [1]. Full credit and responsibility for these files belong to Dr. Hongri Gu and Yonglin Chen, who designed and performed the experiments of [1]. Information on the particular files is given in the README PDF in the corresponding folder. For questions regarding the CAD files, please contact the corresponding authors of [1]. Note that the license declared in this repository applies to the simulation program **BDHM** only.
 
