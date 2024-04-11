@@ -126,7 +126,7 @@ Internally, the calculations are performed in units of the colloid diameter, the
 
 In the following, we list some assumptions and simplifications made by BDHM. In future studies, a more rigorous model can be implemented by eliminating items from the list.
 
-- Only hydrodynamic interactions on the point particle level are used. This means that the Oseen tensor and the Blake tensor are applied. In particular, the model for the hydrodynamic interactions (for instance, based on the Blake tensor) utilized in BDHM is fully taken out of the theory section of *Sedimentation of colloidal particles near a wall: Stokesian dynamics simulations, R. B. Jones, et al., Phys. Chem. Chem. Phys., 1999, 1, 2131-2139.* (section 2, 3 and the appendix).
+- Only hydrodynamic interactions on the point particle level are used. This means that the Oseen tensor and the Blake tensor are applied. In particular, the model for the hydrodynamic interactions (for instance, the Blake tensor) utilized in BDHM is fully taken out of the theory section of *Sedimentation of colloidal particles near a wall: Stokesian dynamics simulations, R. B. Jones, et al., Phys. Chem. Chem. Phys., 1999, 1, 2131-2139.* (see sections 2, 3 and the appendix of the given reference).
 - The colloids and the micromagnets of the grid are modeled as point dipoles.
 - The hydrodynamic interactions resulting from the steric particle repulsions are neglected in the studies of [1].
 - When multiple walls are present (which is the case for the systems with the additional flow field), only the influence of the wall corresponding to the magnetic grid on the hydrodynamic interactions is taken into account.
@@ -139,7 +139,7 @@ In the following, we list some assumptions and simplifications made by BDHM. In 
 
 Note that the toy model BDHM successfully reproduces the main qualitative behavior found in the experiments, even with all these simplifications.
 
-If more physically rigorous results are needed, it is suggested to replace the point particle hydrodynamics with relations based on the Rotne-Prager-Yamakawa tensor (patricullarly, the Rotne-Prager-Blake tensor) and to include the hydrodynamic interaction that result from the steric interactions (approximated via the Weeks-Chandler-Andersen pair potential in BDHM).
+If more physically rigorous results are needed, it is suggested to replace the point particle hydrodynamics with relations based on the Rotne-Prager-Yamakawa tensor (particularly, the Rotne-Prager-Blake tensor) and to include the hydrodynamic interaction that results from the steric interactions (approximated via the Weeks-Chandler-Andersen pair potential in BDHM).
 
  <a id="Contents"></a>
 # Contents of the particular files
