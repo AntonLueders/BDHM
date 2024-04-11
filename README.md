@@ -4,7 +4,7 @@ BDHM (Brownian Dynamics with Hydrodynamics and Magnetic forces) combines magneti
 
 [1] *Scalable high-throughput microfluidic separation of magnetic microparticles* by Hongti Gu et al.
 
-By reproducing the qualitative behavior of the experiments in [1] with the heavily simplified toy model implemented in BDHM, we can show the generality of the underlying dynamic phenomena. All information and methods employed by BDHM are described in detail in the supporting information of [1]. While BDHM can be used to repeat the corresponding simulations, we strongly encourage full reproduction using the information in said supporting information.
+By reproducing the qualitative behavior of the experiments in [1] with the heavily simplified toy model implemented in BDHM, we can show the generality of the underlying dynamic phenomena. All information and methods employed by BDHM are described in detail in the supplemental information of [1]. While BDHM can be used to repeat the corresponding simulations, we strongly encourage full reproduction using the information in said supplemental information.
 
 # Table of content:
  - [What BDHM is and what it is not](#What)
@@ -108,9 +108,9 @@ Note that the word and number separation in the input file should be done with t
 
 # What BDHM does
 
-All details of BDHM are given in the supporting information of [1]. Using the parameters defined in the input file, BDHM generates an array of micromagnets that are separated by a repulsive wall from superparamagnetic colloids that are located in the "positive half volume" of the setup. Additionally, a rotating magnetic is applied which influences the colloid dynamics and the "soft-magnetic" micromagnets. 
+All details of BDHM are given in the supplemental information of [1]. Using the parameters defined in the input file, BDHM generates an array of micromagnets that are separated by a repulsive wall from superparamagnetic colloids that are located in the "positive half volume" of the setup. Additionally, a rotating magnetic field is applied which influences the colloid dynamics and the "soft-magnetic" micromagnets. 
 
-BDHM possesses two main modes. The first mode (StationaryMode 1) corresponds to the studies without an additional flow field. Here, the function **CalcVelocity** can be used to determine the velocity of "particle bands" moving along the grid due to the rotation of the external field. The velocity calculation starts when the first 20 colloids pass the fourth line of micromagnets perpendicular to the movement direction. The "finish line" (i.e., the line of micromagnets perpendicular to the movement direction where the velocity calculation stops) can be defined in the input file. When the first 20 particles pass the finish line, the simulation stops, and the velocity is written in the console. Also in this mode, the number of colloids per occupied micromagnet can be computed with the option **CalcParticlesPerPole**. The corresponding data are written in separate output files. During this mode, simplified periodic boundary conditions are applied in the x and y direction. 
+BDHM possesses two main modes. The first mode (StationaryMode 1) corresponds to the studies without an additional flow field. Here, the function **CalcVelocity** can be used to determine the velocity of "particle bands" moving along the grid due to the rotation of the external field. The velocity calculation starts when the first 20 colloids pass the fourth line of micromagnets perpendicular to the movement direction. The "finish line" (i.e., the line of micromagnets perpendicular to the movement direction where the velocity calculation stops) can be defined in the input file. When the first 20 particles pass the finish line, the simulation stops, and the velocity is written in the console. Also in this mode, the number of colloids per occupied micromagnet can be computed with the option **CalcParticlesPerPole**. The corresponding data are written in separate output files. During this mode, simplified periodic boundary conditions are applied in the x and y direction (see the supplemental information of [1]). 
 
 The second main mode (StationaryMode 0) corresponds to the studies in [1] with a Poiseuille flow field. Here, additional repulsive walls are added to the system (parallel to the first wall and perpendicular to the movement direction at the end of the array). These walls are not considered in the computations of the hydrodynamic interactions for simplicity. If this mode is chosen, new particles "spawn" at one side of the grid, and particles that leave the micromagnetic array are deleted (they are stored at a position outside of the array). 
 
@@ -124,20 +124,22 @@ Internally, the calculations are performed in units of the colloid diameter, the
  <a id="Assumptions"></a>
 # Assumptions and simplifications
 
-In the following, we list some assumptions and simplifications made by BDHM. In future studies, a more rigorous model can be implemented by eliminating items from the following list.
+In the following, we list some assumptions and simplifications made by BDHM. In future studies, a more rigorous model can be implemented by eliminating items from the list.
 
-- Only hydrodynamic interactions on the point particle level are used. This means that the Oseen tensor and the Blake tensor are applied.
+- Only hydrodynamic interactions on the point particle level are used. This means that the Oseen tensor and the Blake tensor are applied. In particular, the model for the hydrodynamic interactions (for instance, based on the Blake tensor) utilized in BDHM is fully taken out of the theory section of *Sedimentation of colloidal particles near a wall: Stokesian dynamics simulations, R. B. Jones, et al., Phys. Chem. Chem. Phys., 1999, 1, 2131-2139.* (section 2, 3 and the appendix).
 - The colloids and the micromagnets of the grid are modeled as point dipoles.
 - The hydrodynamic interactions resulting from the steric particle repulsions are neglected in the studies of [1].
 - When multiple walls are present (which is the case for the systems with the additional flow field), only the influence of the wall corresponding to the magnetic grid on the hydrodynamic interactions is taken into account.
 - Gravity acting on the colloids is neglected.
 - Brownian fluctuations are neglected.
-- Contact friction between touching colloids is not taken into account.
-- The magnetic interactions are cut after a certain distance (see the supporting information of [1]).
-- Minimum image convention is used for the hydrodynamic and magnetic interactions when periodic boundary conditions are applied. Even for these long-ranged interactions, only interactions with the nearest periodic image are taken into account for simplicity.
+- Conntact friction between touching colloids or between the colloids and the wall, as well as hydrodynamic lubrication phenomena are not taken into account.
+- The magnetic interactions are cut after a certain distance (see the supplemental information of [1]).
+- Minimum image convention is used for the hydrodynamic and magnetic interactions when periodic boundary conditions are applied. Even for the corresponding long-ranged relations, only interactions with the nearest periodic image are considered for simplicity.
 - The magnitude of the rotating magnetic field is kept constant.
 
 Note that the toy model BDHM successfully reproduces the main qualitative behavior found in the experiments, even with all these simplifications.
+
+If more physically rigorous results are needed, it is suggested to replace the point particle hydrodynamics with relations based on the Rotne-Prager-Yamakawa tensor (patricullarly, the Rotne-Prager-Blake tensor) and to include the hydrodynamic interaction that result from the steric interactions (approximated via the Weeks-Chandler-Andersen pair potential in BDHM).
 
  <a id="Contents"></a>
 # Contents of the particular files
@@ -163,7 +165,7 @@ BDHM consits of multiple C files. Here, a summary of the corresponding content o
  <a id="Disclaimer"></a>
 # Disclaimer
 
-Note that BDHM is **not** an ongoing software project with active support. Instead, it is part of the supporting information of [1] and reflects the state of the software used to obtain the corresponding numerical results. Hence, this program is not optimized for user accessibility but is grown with the needs of the underlying study. For any questions regarding [1] and the corresponding data, please contact the corresponding authors.
+Note that BDHM is **not** an ongoing software project with active support. Instead, it is part of the supplemental information of [1] and reflects the state of the software used to obtain the corresponding numerical results. Hence, this program is not optimized for user accessibility but is grown with the needs of the underlying study. For any questions regarding [1] and the corresponding data, please contact the corresponding authors.
 
  <a id="Experiment"></a>
 # Additional folders independent of BDHM
