@@ -71,20 +71,20 @@ where the parameters of the simulation must be stated in a file called **inputfi
 in the console. The input file has always the form of the following example:
 
 ```
-Geometry	6.000000	4	15	10.000000 
-InitBox	24.000000	4.000000	7.000000
-N	2
-dt	0.000000005
+Geometry	6.000000	3	10	4.000000 
+InitBox	7.000000	7.000000	3.500000
+N	50
+dt	0.000000010000
 StepNumber	10000	10
-Magnetics	145.0 0.000000	1.000000	0.000000	9314.47
+Magnetics	90.0 0.000000	1.000000	0.000000	9314.47
 HiMode	1
 VerletList	1.500000
 Seed	100
 Flow	1000000.0
-ParticleManagement	1	30
+ParticleManagement	20	10
 StationaryMode 1
-CalcVelocity	0	4
-CalcParticlesPerPole	0	5000
+CalcVelocity	0	6
+CalcParticlesPerPole	1	1000
 ```
 
 The particular lines of such an input file and the meaning of the numbers are summarized in the following list:
