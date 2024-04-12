@@ -49,7 +49,7 @@ void CalcAnisotropiePoles() {
     }
     n[2] = na;
     
-    printf("Anisotropie of poles:\t%f\t%f\t%f\n", n[0], n[1], n[2]);
+    printf("Demagnetization factors of micromagnets:\t%f\t%f\t%f\n", n[0], n[1], n[2]);
 }
 
 // ----------------------------------------------------------------------------------------
