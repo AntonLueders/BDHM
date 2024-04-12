@@ -137,9 +137,9 @@ In the following, we list some assumptions and simplifications made by BDHM. In 
 - Minimum image convention is used for the hydrodynamic and magnetic interactions when periodic boundary conditions are applied. Even for the corresponding long-ranged relations, only interactions with the nearest periodic image are considered for simplicity.
 - The magnitude of the rotating magnetic field is kept constant.
 
-Note that the toy model BDHM successfully reproduces the main qualitative behavior found in the experiments, even with all these simplifications.
+Note that the toy model BDHM successfully reproduces the main qualitative collective behavior found in the experiments, even with all these simplifications.
 
-If more physically rigorous results are needed, it is suggested to replace the point particle hydrodynamics with relations based on the Rotne-Prager-Yamakawa tensor (particularly, the Rotne-Prager-Blake tensor) and to include the hydrodynamic interaction that results from the steric interactions (approximated via the Weeks-Chandler-Andersen pair potential in BDHM).
+If more physically rigorous results are needed, it is suggested to first consider replacing the point particle hydrodynamics with relations based on the Rotne-Prager-Yamakawa tensor (particularly, the Rotne-Prager-Blake tensor) and to include the hydrodynamic interaction that results from the steric interactions (approximated via the Weeks-Chandler-Andersen pair potential in BDHM).
 
  <a id="Contents"></a>
 # Contents of the particular files
