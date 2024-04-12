@@ -21,7 +21,7 @@ By reproducing the qualitative behavior of the experiments in [1] with the heavi
  <a id="What"></a>
 # What BDHM is and what it is not
 
-BDHM is a heavily simplified toy model that trades physical rigorosity for straightforward concepts to act as a proof of concept for the experiments and the suggested system of [1]. It successfully reproduces the dynamic behavior of the experiments on a qualitative level and, thus, indicates that the found results are independent of the concrete realization of the system. However, BDHM does not generate precise quantitative results, and the corresponding numerical data should be interpreted qualitatively. Nevertheless, compared to the resolution of the experiments, BDHM can be used to get a rough idea of the behavior of the system on the particle level.
+BDHM is a heavily simplified toy model that trades physical rigorosity for straightforward concepts to act as a proof of concept for the experimental results and the suggested system of [1]. It successfully reproduces the collective dynamic behavior of the experiments on a qualitative level and, thus, indicates that the found results are independent of the concrete realization of the system. However, BDHM does not generate precise quantitative results, and the corresponding numerical data should be interpreted qualitatively. Nevertheless, compared to the resolution of the experiments, BDHM can be used to get a rough idea of the collective behavior of the system on the particle level.
 
  <a id="Requirements"></a>
 # Requirements
