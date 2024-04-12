@@ -59,11 +59,11 @@ double CalcFDipol() {
 
     // The first factor summarizes all fixed factors contained in F0 of the magnetic dipole 
     // interactions. The second factor is the magnetic flux density in mT. Third factor deals
-    // with the m in mT. The fourth factor transforms N in k_BT/sigma.
+    // with the m in mT. The fourth factor transforms N in kT/sigma.
     double F_0 = 3.19042969 * pow(10., -9.) * pow(B_field_strength, 2.) * pow(10., -6.) 
                  * (2.47073956 * pow(10., 15.));
     
-    printf("F0 of Dipol force:\t%f\n", F_0);
+    printf("F0 of Dipol force (in kT/sigma):\t%f\n", F_0);
     
     return F_0;
 }
