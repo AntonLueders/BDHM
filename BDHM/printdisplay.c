@@ -13,7 +13,7 @@ void PrintWelcome() {
     printf("+                                                                  "
            "    "
            "      +\n");
-    printf("+             Magnetic colloid, micromagnets and hydrodynamics     "
+    printf("+             Magnetic colloids, micromagnets and hydrodynamics    "
            "    "
            "      +\n");
     printf("+             Version3 (BDHM3)                                     "
@@ -43,13 +43,13 @@ void PrintWelcome() {
     printf("+                                                                  "
            "    "
            "      +\n");
-    printf("+             Last edited: 21.02.2024                              "
+    printf("+             Last edited: 12.04.2024                              "
            "    "
            "      +\n");
     printf("+                                                                  "
            "    "
            "      +\n");
-    printf("+             V3.10.4                                              "
+    printf("+             V3.10.5                                              "
            "          +\n");
     printf("+                                                                  "
            "    "
