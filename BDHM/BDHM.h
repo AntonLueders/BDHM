@@ -30,7 +30,7 @@
 #define HX 0.
 #define HY 1.
 #define HZ 0.
-#define H_FREQ 0.04188
+#define H_FREQ 9314.47
 #define NA 1.
 #define NR 1.
 #define Q 3.
@@ -45,7 +45,7 @@
 #define RCUT_VER 1.5
 #define RCUT_DIPOL_PART 2.5
 #define RCUT_DIPOL_POLES 3.5
-#define V_FLOW_MAX 10.
+#define V_FLOW_MAX 1000000.
 #define N_START 20
 #define N_RATE 10
 #define STATIONARY_MODE 1
