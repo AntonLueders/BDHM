@@ -1,6 +1,11 @@
 #include "hi.h"
 
 // ----------------------------------------------------------------------------------------
+// The complete hydrodynamic interaction model is taken out of 
+// Sedimentation of colloidal particles near a wall: Stokesian dynamics simulations, 
+// R. B. Jones, et al., Phys. Chem. Chem. Phys., 1999, 1, 2131-2139.
+// (see sections 2, 3 and the appendix of the given reference)
+// ----------------------------------------------------------------------------------------
 
 // Writes Oseen tensor corresponding to "dissq" and "dij" in "Oij".
 void CalcOseenTensor(double dissq, double dij[3], double Oij[3][3]) {
@@ -28,6 +33,8 @@ void CalcOseenTensor(double dissq, double dij[3], double Oij[3][3]) {
     
     for(int i = 0; i < 3; i++) {
         for(int j = 0; j < 3; j++) {
+            // Note the factor which results when replacing the viscosity with the
+            // diffusion coefficient and the diameter. We here use D = 1 for simplicity.
             Oij[i][j] = 3. * sigma / (8. * sqrt(dissq)) * (unity[i][j] + rijrij[i][j]); 
         }
     }
@@ -36,7 +43,7 @@ void CalcOseenTensor(double dissq, double dij[3], double Oij[3][3]) {
 // ----------------------------------------------------------------------------------------
 
 // Writes the wall correction part of the Blake tensor in "delta_Oij".
-// See, for example, Phys. Chem. Chem. Phys., 1999,1, 2131-2139.
+// See Phys. Chem. Chem. Phys., 1999, 1, 2131-2139.
 void CalcDeltaOseen(Particle *p_i, Particle *p_j, double delta_Oij[3][3]) {
     
     double ri[3] = {0., 0., 0.};
@@ -61,7 +68,9 @@ void CalcDeltaOseen(Particle *p_i, Particle *p_j, double delta_Oij[3][3]) {
     // if: with Poiseuille flow
     // else: without Poiseuille flow (periodic boundaries)
     if (!stationary_mode) {
-        
+
+        // These equations are taken out of the appendix of Phys. Chem. Chem. Phys., 1999, 1, 2131-2139.
+        // See also section 3 of the given reference.
         delta_Oij[0][0] = -2. * ri[2] * rj[2] * (1. / pow(s, 3.) - 3. * pow(ri[0] - rj[0], 2.) / pow(s, 5.));
         delta_Oij[1][1] = -2. * ri[2] * rj[2] * (1. / pow(s, 3.) - 3. * pow(ri[1] - rj[1], 2.) / pow(s, 5.));
         delta_Oij[2][2] = 2. * ri[2] * rj[2] * (1. / pow(s, 3.) - 3. * pow(ri[2] + rj[2], 2.) / pow(s, 5.));
@@ -90,6 +99,8 @@ void CalcDeltaOseen(Particle *p_i, Particle *p_j, double delta_Oij[3][3]) {
     
     for(int i = 0; i < 3; i++) {
         for(int j = 0; j < 3; j++) {
+            // Note the factor which results when replacing the viscosity with the
+            // diffusion coefficient and the diameter. We here use D = 1 for simplicity.
             delta_Oij[i][j] = 3. * sigma / 8. * delta_Oij[i][j];
         }
     }
@@ -134,6 +145,7 @@ void CalcDij(int index_i, int index_j, Particle *p_i, Particle *p_j, double Dij[
         
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
+                // Here kT = 1 is used.
                 Dij[i][j] = p_i->D * mat_unity[i][j] - Oij_mirror[i][j] + delta_Oij[i][j];
             }
         }
@@ -164,6 +176,7 @@ void CalcDij(int index_i, int index_j, Particle *p_i, Particle *p_j, double Dij[
         
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
+                // See section 3 of Phys. Chem. Chem. Phys., 1999,1, 2131-2139.
                 Dij[i][j] = Oij[i][j] - Oij_mirror[i][j] + delta_Oij[i][j];
             }
         }
