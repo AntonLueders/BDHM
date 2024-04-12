@@ -15,13 +15,13 @@
 #define BOXX 10.
 #define BOXY 10.
 #define BOXZ 4.
-#define INIT_BOXX 7.
+#define INIT_BOXX 18.
 #define INIT_BOXY 7.
 #define INIT_BOXZ 3.5
-#define NP 50
+#define NP 100
 #define DT 0.00000001
-#define STEPS 10000
-#define STEPSRATE 10
+#define STEPS 100000
+#define STEPSRATE 100
 #define SEED 100
 #define EPS_WCA 10000.
 #define EPS_WALL 10000.
