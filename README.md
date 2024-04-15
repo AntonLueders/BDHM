@@ -62,7 +62,7 @@ BDHM must be executed in the console using
 ./BDHM3.out 
 ``
 
-where the parameters of the simulation must be stated in a file called **inputfile** which is in the same folder as the binary. Note that this input file is "static" meaning that parameter must always be stated at the same position. If inputfile is not present in the folder where BDHM is executed, the program exits with an error. To generate a new example input file, use the line
+where the parameters of the simulation must be stated in a file called **inputfile** which is in the same folder as the binary. Note that this input file is "static" meaning that the parameters must always be stated at the same position. If inputfile is not present in the folder where BDHM is executed, the program exits with an error. To generate a new example input file, use the line
 
 ``
 ./BDHM3.out Setup
@@ -110,16 +110,18 @@ Note that the word and number separation in the input file should be done with t
 
 All details of BDHM are given in the supplemental information of [1]. Using the parameters defined in the input file, BDHM generates an array of micromagnets that are separated by a repulsive wall from superparamagnetic colloids that are located in the "positive half volume" of the setup. Additionally, a rotating magnetic field is applied which influences the colloid dynamics and the "soft-magnetic" micromagnets. 
 
-BDHM possesses two main modes. The first mode (StationaryMode 1) corresponds to the studies without an additional flow field. Here, the function **CalcVelocity** can be used to determine the velocity of "particle bands" moving along the grid due to the rotation of the external field. The velocity calculation starts when the first 20 colloids pass the fourth line of micromagnets perpendicular to the movement direction. The "finish line" (i.e., the line of micromagnets perpendicular to the movement direction where the velocity calculation stops) can be defined in the input file. When the first 20 particles pass the finish line, the simulation stops, and the velocity is written in the console. Also in this mode, the number of colloids per occupied micromagnet can be computed with the option **CalcParticlesPerPole**. The corresponding data are written in separate output files. During this mode, simplified periodic boundary conditions are applied in the x and y direction (see the supplemental information of [1]). 
+BDHM possesses two main modes. The first mode (StationaryMode 1) corresponds to the studies without an additional flow field. Here, the function **CalcVelocity** can be used to determine the velocity of "particle bands" moving along the grid due to the rotation of the external field. The velocity calculation starts when the first 20 colloids pass the fourth line of micromagnets perpendicular to the movement direction. The "finish line" (i.e., the line of micromagnets perpendicular to the movement direction where the velocity calculation stops) can be defined in the input file. When the first 20 particles pass the finish line, the simulation stops and the velocity is written in the console. Also in this mode, the number of colloids per occupied micromagnet can be computed with the option **CalcParticlesPerPole**. The corresponding data are written in separate output files. During this mode, simplified periodic boundary conditions are applied in the x and y direction (see the supplemental information of [1]). 
 
 The second main mode (StationaryMode 0) corresponds to the studies in [1] with a Poiseuille flow field. Here, additional repulsive walls are added to the system (parallel to the first wall and perpendicular to the movement direction at the end of the array). These walls are not considered in the computations of the hydrodynamic interactions for simplicity. If this mode is chosen, new particles "spawn" at one side of the grid, and particles that leave the micromagnetic array are deleted (they are stored at a position outside of the array). 
 
-In both modes, the particle positions are written in an xyz file during a simulation. This file can be used in programs such as VMD to visualize the dynamics 
+In both modes, the particle positions are written in an xyz file during a simulation. This file can be used in programs such as VMD (*VMD: Visual molecular dynamics, W. Humphrey, A. Dalke K. Schulten, J. Mol. Graph., 1996, 14, 33–38*) to visualize the dynamics.
 
  <a id="Data"></a>
 # How to interprete BDHM data
 
 Internally, the calculations are performed in units of the colloid diameter, the thermal energy *kT*, the Brownian time, and the diffusion coefficient of a colloid. Accordingly, the output data are also given in said units and must be converted to SI units for a comparison with the experiments. For instance, the particle band velocity is given in units of colloid diameter divided by the Brownian time and the particle positions in the xyz file are given in multiples of the particle diameter. Note also that the dimensions of the experimental setup can be used to approximate a connection between the maximum velocity of the Poiseuille flow and the volume flux measured in the experiments. A PDF file called **Parameters.pdf** can be found in the repository, which lists the assumptions and conversion factors used for the comparisons in [1].
+
+To visualize the dynamics of the system, it is suggested to use external software that can interpret the xyz data generated by BDHM. For this, *VMD: Visual molecular dynamics, W. Humphrey, A. Dalke K. Schulten, J. Mol. Graph., 1996, 14, 33–38* is utilized in the context of [1].
 
  <a id="Assumptions"></a>
 # Assumptions and simplifications
@@ -128,25 +130,25 @@ In the following, we list some assumptions and simplifications made by BDHM. In 
 
 - Only hydrodynamic interactions on the point particle level are used. This means that the Oseen tensor and the Blake tensor are applied. In particular, the model for the hydrodynamic interactions (for instance, the Blake tensor) utilized in BDHM is fully taken out of the theory section of *Sedimentation of colloidal particles near a wall: Stokesian dynamics simulations, R. B. Jones, et al., Phys. Chem. Chem. Phys., 1999, 1, 2131-2139.* (see sections 2, 3 and the appendix of the given reference).
 - The colloids and the micromagnets of the grid are modeled as point dipoles.
+- The cuboidal micromagnets are modeled as spheroids and fitting demagnetization factors are applied to characterize the apparent susceptibility.
 - The hydrodynamic interactions resulting from the steric particle repulsions are neglected in the studies of [1].
 - When multiple walls are present (which is the case for the systems with the additional flow field), only the influence of the wall corresponding to the magnetic grid on the hydrodynamic interactions is taken into account.
 - Gravity acting on the colloids is neglected.
-- Brownian fluctuations are neglected.
-- Conntact friction between touching colloids or between the colloids and the wall, as well as hydrodynamic lubrication phenomena are not taken into account.
+- Brownian fluctuations are not considered.
+- Contact friction between touching colloids or between the colloids and the wall, as well as hydrodynamic lubrication phenomena are not taken into account.
 - The magnetic interactions are cut after a certain distance (see the supplemental information of [1]).
 - Minimum image convention is used for the hydrodynamic and magnetic interactions when periodic boundary conditions are applied. Even for the corresponding long-ranged relations, only interactions with the nearest periodic image are considered for simplicity.
-- The magnitude of the rotating magnetic field is kept constant.
+- Only the external magnetic field is influencing the magnitude and direction of the magnetic moments of the colloids and the microparticles.
+- The magnitude of the rotating magnetic field is kept constant. This is in contrast to the experiments in [1], where the magnitude of the magnetic flux density is expected to vary if the field is generated by a rotating magnet.
 
-Note that the toy model BDHM successfully reproduces the main qualitative collective behavior found in the experiments, even with all these simplifications.
-
-If more physically rigorous results are needed, it is suggested to first consider replacing the point particle hydrodynamics with relations based on the Rotne-Prager-Yamakawa tensor (particularly, the Rotne-Prager-Blake tensor) and to include the hydrodynamic interaction that results from the steric interactions (approximated via the Weeks-Chandler-Andersen pair potential in BDHM).
+Note that the toy model BDHM successfully reproduces the main features of qualitative collective behavior found in the experiments, even with all these simplifications. However, if more physically rigorous results are needed, it is suggested first to consider replacing the point particle hydrodynamics with relations based on the Rotne-Prager-Yamakawa tensor (particularly, the Rotne-Prager-Blake tensor) and to include the hydrodynamic interaction that results from the steric interactions (approximated via the Weeks-Chandler-Andersen pair potential in BDHM). While interpreting the results of BDHM, it should be considered that the hydrodynamic point particle model in combination with the heuristic repulsions and the missing contact phenomena (such as the contact friction) leads to unphysical behavior in the dynamics of the particular colloids inside the clusters at the micromagnets. In particular, the fast "vibration-like" fluctuations that result when multiple particles are closely assembled near a micromagent are attributed to such artifacts.
 
  <a id="Contents"></a>
 # Contents of the particular files
 
-BDHM consits of multiple C files. Here, a summary of the corresponding content of the particular files is given.
+BDHM consists of multiple C files. Here, a summary of the corresponding content of the particular files is given.
 
-- **BDHM.c:** Main file which contains the simulation loop. It calls functions grouped together in the other files.
+- **BDHM.c:** Main file which contains the simulation loop. It calls functions grouped in the other files.
 - **bda.c:** Here, the integrators are implemented. How the particles are moved during each simulation step can be found in this file.
 - **calc.c:** Functions for observables that can be computed during a simulation are given in calc.c.
 - **distance.c:** Contains functions to compute the distance between particles.
