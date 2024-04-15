@@ -39,13 +39,13 @@ The source files of BDHM can be found in the folder **BDHM** in this repository.
 make
 ``
 
-in the console while being in the folder that contains the source files. If BDHM must be built "by hand", the particular C files that contain the different functions (i.e., all separate C files) can be compiled with
+in the console while being in the folder that contains the source files. If BDHM must be built "by hand", the particular C files can be compiled with
 
 ``
 gcc -Wall -std=c99 -O3 -g -flto -c filename.c 
 ``
 
-first. Afterward, the main file BDHM.c must be compiled while linking everything together. This can be done by typing
+first. Afterward, the main file BDHM3.out must be generated while linking everything together. This can be done by typing
 
 ``
 gcc -Wall -std=c99 -O3 -g -flto -c lists.o inputdata.o distance.o init.o printdata.o hi.o bda.o force.o magnetics.o verletlist.o printdisplay.o flow.o partmanagement.o calc.o BDHM.o -o BDHM3.out -lgsl -lgslcblas -lm
