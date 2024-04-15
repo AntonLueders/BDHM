@@ -21,7 +21,7 @@ void CalcDipole(double mi[3], double mj[3], double dissq, double dij[3], double 
     double mirij = 0.;
     double mjrij = 0.;
 
-    // Scalar products for the interaction magnetic force
+    // Scalar products for the magnetic interaction force
     for (int d = 0; d < dim; d++) {
         mimj += mi[d] * mj[d];
         // Note that the negative sign resulting from the choice of direction for dij
