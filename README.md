@@ -164,6 +164,8 @@ BDHM consists of multiple C files. Here, a summary of the corresponding content 
 - **printdisplay.c:** This file contains the text that is written to the console.
 - **verletlist.c:** In verletlist.c, the functions to check if the Verlet lists must be updated are implemented. Verlet lists are a method to reduce the computation time of the simulations.
 
+To understand how BDHM is working, it is suggested to start with reading the main simulation loop in the main *C* file **BDHM.c**. If details for the specific function used in the main loop are needed, it is then possible to navigate to the correct subfile that contains the source code of the specific commands. Also, if there are questions regarding individual parameters that are used through all functions in the various *C* files, it is always suggested to go back to the main file  **BDHM.c** to check the global variables.
+
  <a id="Disclaimer"></a>
 # Disclaimer
 
