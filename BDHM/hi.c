@@ -34,7 +34,8 @@ void CalcOseenTensor(double dissq, double dij[3], double Oij[3][3]) {
     for(int i = 0; i < 3; i++) {
         for(int j = 0; j < 3; j++) {
             // Note the factor which results when replacing the viscosity with the
-            // diffusion coefficient and the diameter. We here use D = 1 for simplicity.
+            // diffusion coefficient and the diameter. We here use D = 1 
+            // and kT = 1 for simplicity.
             Oij[i][j] = 3. * sigma / (8. * sqrt(dissq)) * (unity[i][j] + rijrij[i][j]); 
         }
     }
@@ -100,7 +101,8 @@ void CalcDeltaOseen(Particle *p_i, Particle *p_j, double delta_Oij[3][3]) {
     for(int i = 0; i < 3; i++) {
         for(int j = 0; j < 3; j++) {
             // Note the factor which results when replacing the viscosity with the
-            // diffusion coefficient and the diameter. We here use D = 1 for simplicity.
+            // diffusion coefficient and the diameter. We here use D = 1 
+            // and kT = 1 for simplicity.
             delta_Oij[i][j] = 3. * sigma / 8. * delta_Oij[i][j];
         }
     }
