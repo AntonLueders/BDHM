@@ -112,10 +112,13 @@ int main(int argc, char *argv[]) {
 
     // Init. the linked lists that store the particles in the simulations
     InitPartLists();     // partmanagement.c
-    
+
+    // Some bool to check if new particles are added or deleted 
+    // when using an additional flow field.
     bool part_was_deleted = false;
     bool part_was_added = false;
-    
+
+    // Needed when the particle front velocity is calculated
     bool start_calc_velocity = false;
     int start_time_calc_velocity = 0;
     
@@ -189,7 +192,7 @@ int main(int argc, char *argv[]) {
         // Velocity calculation
         if (stationary_mode && calc_velocity) {
             if(!start_calc_velocity) {
-                   // Checks if the particle reached the start line
+                // Checks if the particle reached the start line
                 start_calc_velocity = CalcVelocityStart(P);     // See calc.c
                 start_time_calc_velocity = step;
             }
@@ -197,6 +200,7 @@ int main(int argc, char *argv[]) {
                 // Checks if the particle reached the finish line
                 if (CalcVelocity(P)) {     // See calc.c
                     PrintVelocity(step - start_time_calc_velocity);     // See calc.c
+                    // Simulation ends when velocity is determined
                     break;
                 }
             }
@@ -210,7 +214,7 @@ int main(int argc, char *argv[]) {
             part_was_deleted = CheckForDeletion(P);     // See partmanagement.c
         }
         
-        // Checks for unexpected displacements
+        // Checks for unexpected displacements (simulations end after unphysical "jumps")
         CheckStability(P);     // See partmanagement.c
 
         // Rotates the external H field
