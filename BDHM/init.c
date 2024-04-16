@@ -97,7 +97,8 @@ void InitRandom(Particle *P, Particle *Poles, Particle *Wall) {
     int counter = 0;
     for(int i = 0; i < num_poles[0]; i++) {
         for(int j = 0; j < num_poles[1]; j++) {
-            
+
+            // Generates the array of micromagnets
             Poles[counter].r[0] = distance_poles / 2. + (double)i * distance_poles;
             Poles[counter].r[1] = distance_poles / 2. + (double)j * distance_poles;
             Poles[counter].r[2] = - pos_poles_z;
