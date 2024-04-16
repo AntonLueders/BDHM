@@ -12,8 +12,17 @@ void InitRandom(Particle *P, Particle *Poles, Particle *Wall) {
     long counter_overlap = 0;
     
     for (int i = 0; i < N; i++) {    
+
+        // In stationary_mode, no new particle spawn, and all particles are in the 
+        // simulation box from the beginning
+        int N_limit = 0;
+        if(stationary_mode) {
+            N_limit = N;
+        } else {
+            N_limit = N_start;
+        }
     
-        if(counter_overlap > (long)N_start * (long)N_start) {
+        if(counter_overlap > (long)N_limit * (long)N_limit) {
             printf("ERROR: System too dense.\n");
             exit(1);
         }
@@ -38,14 +47,6 @@ void InitRandom(Particle *P, Particle *Poles, Particle *Wall) {
         P[i].verList_mag->value = i;
         P[i].verList_mag->next = NULL;
         
-        // In stationary_mode, no new particle spawn, and all particles are in the 
-        // simulation box from the beginning
-        int N_limit = 0;
-        if(stationary_mode) {
-            N_limit = N;
-        } else {
-            N_limit = N_start;
-        }
         if (i < N_limit) {
             for (int d = 0; d < dim; d++) {
                 
