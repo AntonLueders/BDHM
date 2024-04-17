@@ -6,7 +6,7 @@ BDHM (Brownian Dynamics with Hydrodynamics and Magnetic forces) combines magneti
 
 By reproducing the qualitative behavior of the experiments in [1] with the heavily simplified toy model implemented in BDHM, we can show the generality of the underlying dynamic phenomena. All information and methods employed by BDHM are described in detail in the supplemental information of [1]. While BDHM can be used to repeat the corresponding simulations, we strongly encourage full reproduction using the information in said supplemental information.
 
-DOI: [![DOI](https://zenodo.org/badge/693599898.svg)](https://zenodo.org/doi/10.5281/zenodo.10982926)
+[![DOI](https://zenodo.org/badge/693599898.svg)](https://zenodo.org/doi/10.5281/zenodo.10982926)
 
 # Table of content:
  - [What BDHM is and what it is not](#What)
